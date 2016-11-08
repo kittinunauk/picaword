@@ -1,0 +1,162 @@
+#logo{
+	padding: 3%;
+	text-align: center;
+	/*border: 5px solid red;*/
+}
+
+#logo img{
+	width: 40%;
+}
+
+#login{
+	width: 50%;
+	text-align: right;
+	float: left;
+	/*border: 5px solid red;*/
+}
+
+#signup{
+	width: 50%;
+	/*border:5px solid blue;*/
+	text-align: left;
+	
+}
+
+.loginform{
+	/*border: 5px solid red;*/
+	position:absolute;
+	text-align: center;
+	width: 40%;
+	margin-left: 30%;
+	background-color: #00BFFF;
+	border-radius: 20px;
+	padding: 20px;
+    animation: fade 0.4s linear forwards;
+    -webkit-animation: fade 0.4s linear forwards;
+}
+
+@keyframes fade {
+  0%{ opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.loginform a{
+	float: right;
+	margin-right: 0px;
+	color:white;
+}
+
+.signupform{
+	/*border: 5px solid red;*/
+	position:absolute;
+	text-align: center;
+	width: 40%;
+	margin-left: 30%;
+	background-color: #8FD868;
+	border-radius: 20px;
+	padding: 20px;
+	animation: fade 0.4s linear forwards;
+    -webkit-animation: fade 0.4s linear forwards;
+}
+
+.signupform a{
+	float: right;
+	margin-right: 0px;
+	color:white;
+}
+
+div.ng-hide {
+    animation: 0.5s formshowup;
+}
+
+button{
+	  height: 40px;
+	  text-align: center;
+	  width: 130px;
+	  border-radius:40px;
+	  background-color: #F9F6D4;
+	  border: solid #00BFFF;
+	  color: #00BFFF;
+	  transition: 0.25s ease-in-out;
+}
+
+button:hover{
+	  height: 40px;
+	  width: 130px;
+	  border-radius:40px;
+	  background-color: #00BFFF;
+	  border: solid #00BFFF;
+	  color: #F9F6D4;
+	  font-size: 16px;
+}
+
+button.ng-hide {
+    animation: 0.5s formshowup;
+}
+
+@keyframes formshowup {
+    from {
+        opacity: 1.0;
+    } to {
+        opacity: 0;
+    }
+}
+
+.input-txt{
+  width: 100%;
+  padding: 20px 10px;
+  background: #FFFFFF;
+  border: none;
+  font-size: 1em;
+  color: White;
+  border-bottom: 1px solid  white;
+  background-color: #00BFFF;
+  transition: 0.35s ease-in-out;
+}
+
+.signup-input-txt{
+	width: 100%;
+  padding: 20px 10px;
+  background: #FFFFFF;
+  border: none;
+  font-size: 1em;
+  color: White;
+  border-bottom: 1px solid  white;
+ 
+  transition: 0.35s ease-in-out;
+	background-color:  #8FD868;
+}
+
+.signup-input-txt:focus{
+	background-color:   #42896A;
+}
+
+
+.input-txt:focus{
+   background-color: #33a7b8;
+}
+
+::-webkit-input-placeholder {  /* WebKit, Blink, Edge */
+    color:    #F0F8FF;
+}
+
+#loginbtn{
+	background-color:  white;
+}
+
+#loginbtn:hover{
+	color: white;
+	background-color: #33a7b8;
+}
+
+#signupbtn{
+	color: #8FD868;
+	background-color: white;
+	border-color:  #8FD868;
+}
+
+#signupbtn:hover{
+	background-color: #42896A;
+	color: white;
+}
+

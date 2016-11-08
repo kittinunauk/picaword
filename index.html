@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="picaword">
+<head>
+  <title>Play</title>
+  <!-- Include AngularJS Framework -->
+  <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+  <!-- Include Bootstrap Framework -->
+  <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Include AngularJS directive to flip card with a CSS3 flip animation
+  Ref. https://github.com/zwacky/angular-flippy -->
+          <link rel="stylesheet" href="css/angular-flippy.css">
+          <link rel="stylesheet" href="css/angular-flippy-fancy.css">
+          <script type="text/javascript" src="js/angular-flippy.js"></script>
+          <script type="text/javascript" src="js/loginsignup.js"></script>
+          <script src="node_modules/angular-animate/angular-animate.js"></script>
+
+          <link rel="stylesheet" href="css/index.css">
+
+</head>
+<body style="background-color: #F9F6D4;" >
+<div ng-controller="indexCtrl">
+  <header>
+      <div id ="logo">
+        <img src="img/web/LOGO.png" alt="">
+      </div>
+   </header>
+   <section>
+     <div id = "login" class="col-xs-12">
+        <button ng-show="loginbtn" ng-click="getLoginForm()" >LOGIN</button>
+     </div>
+     <div class="col-xs-12 loginform" ng-show="loginform">
+          <form action="#" method="POST">
+        
+            <input type="email" name="emaillogin" id="emaillogin" class="input-txt" placeholder="E-MAIL" required> <br>
+            <input type="password" name="passlogin" id="passlogin" class="input-txt" placeholder="Password xD"required> <br>
+            <br><button type="submit" id="loginbtn"> Login </button>
+           <br><a href="#" ng-click="getSignupForm()">SIGN UP</a>
+          </form>
+     </div>
+     <div id ="signup" class="col-xs-12">
+      <button ng-show="signupbtn" ng-click="getSignupForm()">SIGN UP</button>
+     </div>
+
+      <div class="col-xs-12 signupform" ng-show="signupform">
+          <form action="#" method="POST">
+            <input type="text" name="name" id="name" class="signup-input-txt" placeholder="Name"required> <br>
+            <input type="email" name="emailsignup" id="emaillsignup" class="signup-input-txt" placeholder="E-Mail" required> <br>
+            <input type="password" name="passsignup" id="passsignup" class="signup-input-txt" placeholder="Password"required> <br>
+            <input type="password" name="cpasssignup" id="cpasssignup" class="signup-input-txt" placeholder="Confirmed Password"required> <br>
+            <br><button type="submit" id="signupbtn"> Submit </button>
+           <br><a href="#" ng-click="getLoginForm()">Login</a>
+          </form>
+     </div>
+
+   </section>
+
+</div>
+</body>
+
+<script>
+  
+  //Declare Angular application name 
+  var app = angular.module('picaword',['ngAnimate']);
+  //Declare Angular controller named "wordCtrl"
+  app.controller('indexCtrl',  function ($scope, $http, $filter, $sce,$timeout){
+      $scope.loginbtn = true;
+      $scope.loginform = false;
+      $scope.signupform = false;
+      $scope.signupbtn = true;
+
+      $scope.getLoginForm = function(){
+        $scope.loginbtn = false;
+        $scope.signupbtn = false;
+        $scope.signupform = false;
+       $timeout( function(){ $scope.loginform = true }, 300);
+      };
+      $scope.getSignupForm = function(){
+        $scope.loginbtn = false;
+        $scope.signupbtn = false;
+        $scope.loginform = false;
+        $timeout( function(){ $scope.signupform = true }, 300);
+      };
+    });
+
+</script>
+</html>

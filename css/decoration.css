@@ -1,0 +1,27 @@
+div {
+	//border: 2px solid black;
+}
+
+#logo {
+	padding-top: 5%;
+	
+
+	
+		
+}
+img #logo{
+	display: block;
+	width: auto;
+	height: auto;
+	margin: auto;
+}
+
+a.hiddenanchor{
+	display: none;
+}
+
+#signup{	
+	opacity: 1;
+	z-index: 0;
+}
+
