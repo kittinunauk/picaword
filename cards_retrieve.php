@@ -5,7 +5,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 $deckid = $_GET["deckid"];
 $conn = new mysqli("localhost", "root", "", "picaword");
-$result = $conn->query("SELECT * FROM Card WHERE CDeckID=".$deckid."");
+$result = $conn->query("SELECT * FROM Card WHERE CDID=".$deckid."");
 
 $outp = "";
 while($rs = $result->fetch_array(MYSQLI_ASSOC)) {

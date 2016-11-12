@@ -29,11 +29,12 @@
         <button ng-show="loginbtn" ng-click="getLoginForm()" >LOGIN</button>
      </div>
      <div class="col-xs-12 loginform" ng-show="loginform">
-          <form action="#" method="POST">
+          <form action="login.php" method="POST">
         
             <input type="email" name="emaillogin" id="emaillogin" class="input-txt" placeholder="E-MAIL" required> <br>
             <input type="password" name="passlogin" id="passlogin" class="input-txt" placeholder="Password xD"required> <br>
-            <br><button type="submit" id="loginbtn"> Login </button>
+            <br><button type="submit" id="loginbtn" name="loginSubmit" ng-click="checkLogin()"> Login </button>
+            {{errMsg}}
            <br><a href="#" ng-click="getSignupForm()">SIGN UP</a>
           </form>
      </div>
@@ -42,7 +43,7 @@
      </div>
 
       <div class="col-xs-12 signupform" ng-show="signupform">
-          <form action="#" method="POST">
+          <form action="signup.php" method="POST">
             <input type="text" name="name" id="name" class="signup-input-txt" placeholder="Name"required> <br>
             <input type="email" name="emailsignup" id="emaillsignup" class="signup-input-txt" placeholder="E-Mail" required> <br>
             <input type="password" name="passsignup" id="passsignup" class="signup-input-txt" placeholder="Password"required> <br>
@@ -68,6 +69,8 @@
       $scope.signupform = false;
       $scope.signupbtn = true;
 
+      $scope.errMsg = "";
+
       $scope.getLoginForm = function(){
         $scope.loginbtn = false;
         $scope.signupbtn = false;
@@ -80,6 +83,11 @@
         $scope.loginform = false;
         $timeout( function(){ $scope.signupform = true }, 300);
       };
+
+      $scope.checkLogin = function(){
+        $scope.errMsg = "Invalid username/password";
+      }
+
     });
 
 </script>

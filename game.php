@@ -1,7 +1,10 @@
 <?php
 	//require('config.php');
-	$deckid = 1; // Receive from deck id (main.php)
-	$mode = 2; // 1 for Learning and 2 for KeepProgress
+	$did =  $_POST['did'];  // Receive from deck id (main.php)
+	$selMode = $_POST['selMode'];
+	//echo $tmp;
+	$deckid = $did;
+	$mode =  $selMode; // 1 for Learning and 2 for KeepProgress
 ?>
 <!DOCTYPE html>
 <html ng-app="picaword">
@@ -47,6 +50,7 @@
 		<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out">
 	                    	<flippy-front>
 	                    		<img ng-src="/picaword/{{cards[pid-1].CIPath}}" width="250" height="250">
+
 	                    	</flippy-front>
 	                    	<flippy-back>
 	                    		<p>	
@@ -69,7 +73,7 @@
 </body>
 
 <script>
-	
+
 	//Get deckid from user (php)
 	var _deckid = <?php echo $deckid ?>;
 	var _mode = <?php echo "".$mode ?>;
@@ -88,6 +92,7 @@
 		 //User Score
 		 $scope.userscore = 0;
 		 console.log("Current Deck ID: "+_deckid);
+
 
 		 /*Mode-based Initialization*/
 		 if(_mode===1){
@@ -115,12 +120,16 @@
 		    	$scope.description = $scope.cards[0].CDescription;
 			$scope.maxcard = Object.keys($scope.cards).length;
 		    	$scope.currentword = $scope.cards[0].CWord;
-			// //Enqueue all cards into queue
-		    	for($i  = 0; $i< $scope.maxcard ;$i++){
-		    		queue.push(parseInt($scope.cards[$i].CID));
+		    	console.log($scope.cards);
+			//Enqueue all cards into queue
+		    	for($i  = 1; $i<=$scope.maxcard ;$i++){
+		    		queue.push($i);
+		    		//queue.push(parseInt($scope.cards[$i].CID));
 		    	}
+		    	console.log(queue);
 		    	 //Picture ID
-		 	$scope.pid = parseInt($scope.cards[0].CID);	
+		    	 $scope.pid = parseInt(queue[0]);
+		 	//$scope.pid = parseInt($scope.cards[0].CID);	
 		 	//In case in Learning mode
 		 	if(_mode===1) $scope.userscore = maxcard;    	
 		 } );

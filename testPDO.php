@@ -1,6 +1,6 @@
 <?php
-
-// header("Access-Control-Allow-Origin: *");
+	
+// 	header("Access-Control-Allow-Origin: *");
 // header("Content-Type: application/json; charset=UTF-8");
 
 // $conn = new mysqli("localhost", "root", "", "picaword");
@@ -27,12 +27,12 @@
 // //Return as JSON object.
 // echo($outp);
 
-	$pdo=new PDO("mysql:dbname=picaword;host=localhost","root","");
+$pdo=new PDO("mysql:dbname=picaword;host=localhost","root","");
 	$statement=$pdo->prepare("SELECT DID,DName,DDescription,DMax,DCreator,DRating,CIPath FROM Deck,Card WHERE Card.CDID = Deck.DID GROUP BY Card.CDID");
 	$statement->execute();
 	$results=$statement->fetchAll(PDO::FETCH_ASSOC);
+	
 	$json=json_encode($results);
-	$outp ='{"records":'.$json.'}';
+	$outp ='{"records":['.$json.']}';
 	echo ($outp);
-
 ?>
