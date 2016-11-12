@@ -1,10 +1,28 @@
 <?php
-	try {
-	    $user = "root";
-	    $pass = "";
-	    $dbh = new PDO('mysql:host=localhost;dbname=picaword', $user, $pass);
-	} catch (PDOException $e) {
-	    print "Error!: " . $e->getMessage() . "<br/>";
-	    die();
+	session_start();
+
+	/*Database Configuration*/
+	define('DB_SERVER', 'localhost'); 
+	define('DB_USERNAME', 'root');
+	define('DB_PASSWORD', '');
+	define('DB_DATABASE', 'picaword');
+	//define("BASE_URL", "http://localhost/picaword"); 
+	
+	function getDB() 
+	{
+		$dbhost=DB_SERVER;
+		$dbuser=DB_USERNAME;
+		$dbpass=DB_PASSWORD;
+		$dbname=DB_DATABASE;
+		try {
+			$dbConnection = new PDO("mysql:host=$dbhost;dbname=$dbname", $dbuser, $dbpass); 
+			$dbConnection->exec("set names utf8");
+			$dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			return $dbConnection;
+		}
+			catch (PDOException $e) {
+			echo 'Connection failed: ' . $e->getMessage();
+		}
+
 	}
 ?>
