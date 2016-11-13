@@ -1,10 +1,11 @@
 <?php
-	//require('config.php');
+	session_start();
 	$did =  $_POST['did'];  // Receive from deck id (main.php)
 	$selMode = $_POST['selMode'];
-	//echo $tmp;
 	$deckid = $did;
 	$mode =  $selMode; // 1 for Learning and 2 for KeepProgress
+	$userID = $_SESSION['UID'];
+
 ?>
 <!DOCTYPE html>
 <html ng-app="picaword">
@@ -54,7 +55,7 @@
 	                    	</flippy-front>
 	                    	<flippy-back>
 	                    		<p>	
-	                    			<p ng-hide="true"><b>Word: </b> {{currentword}} <br></p>
+	                    			<p ng-show="wordDisplay"><b>Word: </b> {{currentword}} <br></p>
 					<b>Description: </b> {{description}}
 	                    		</p>
 	                   	 </flippy-back>
@@ -66,7 +67,12 @@
 		<input type="button" value="Next" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn">
 		{{result}}
 
-		
+		<form action="php/progress.php" method="POST">
+			<input type="text" ng-hide="true" value="{{userprogress}}" name = "fprogress" >
+			<input type="text" ng-hide="true" value="{{deckid}}" name = "fdeckid">
+			<button type="submit" ng-show="savebtn">Save Progress</button>
+		</form>
+	
 </div>
 
 <div class="col-md-4"></div>
@@ -91,8 +97,8 @@
 		 $scope.verdict = "-";	    
 		 //User Score
 		 $scope.userscore = 0;
+		 $scope.userprogress = 0;
 		 console.log("Current Deck ID: "+_deckid);
-
 
 		 /*Mode-based Initialization*/
 		 if(_mode===1){
@@ -104,6 +110,8 @@
 		 	$scope.prevbtnvisible = true;
 		 	$scope.prevbtn = true; // Disable first
 		 	$scope.nextbtn = false;
+		 	$scope.wordDisplay = true;
+		 	$scope.savebtn = false;
 		 }else if(_mode===2){
 		 	//Card & Progress Bar in mode 2
 		 	$scope.cardprogressbar  = true;
@@ -113,9 +121,11 @@
 		 	$scope.inputtextvisible = true;
 		 	$scope.submitbtnvisible = true;
 			$scope.inputtext = false;
+			$scope.wordDisplay = false;
+			$scope.savebtn = true;
 		 }
 	 
-		$http.get('cards_retrieve.php', { params: { deckid: _deckid } }).then(function (response) {
+		$http.get('php/cards_retrieve.php', { params: { deckid: _deckid } }).then(function (response) {
 		    	$scope.cards = response.data.records;
 		    	$scope.description = $scope.cards[0].CDescription;
 			$scope.maxcard = Object.keys($scope.cards).length;
@@ -143,7 +153,7 @@
 		 	console.log("Correct Answer:" + $scope.correctans);
 		 	console.log("User Answer:" + $scope.userans);
 		 	console.log($scope.correctans.toLowerCase()===$scope.userans.toLowerCase());
-
+		 	
 		 	//Check user input and the right answer for this card
 		 	//In case it's correct answer
 		 	if(($scope.correctans.toLowerCase()===$scope.userans.toLowerCase())==true){
@@ -151,6 +161,8 @@
 		 		$scope.verdict = "Accepted";
 		 		$scope.userscore += 1;
 		 		if(queue.length>0) queue.shift();
+		 		$scope.userprogress  = ($scope.userscore/$scope.maxcard)*100;
+		 		console.log("User Progression(%): " + $scope.userprogress);
 
 		 	}else{
 		 		console.log("Verdict: Wrong Answer");

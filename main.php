@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html ng-app="decklist">
 <head>
@@ -13,6 +14,8 @@
 </head>
 <body>
 	<div id="container">
+	<?php echo "Welcome, ".$_SESSION['UUser']."!";?>
+	<a href="php/logout.php">Logout</a>
 	<div ng-controller="deckCtrl">
 	
 		<div ng-repeat="n in decks" id="deckprev">
@@ -81,10 +84,11 @@
 	var app = angular.module('decklist', []);
 	app.controller('deckCtrl',  function ($scope, $http, $filter, $sce,$location){
 
-		$http.get('deck_retrieve.php').then(function (response) {
+		$http.get('php/deck_retrieve.php').then(function (response) {
 		    	$scope.decks = response.data.records;
 		    	//console.log($scope.decks[0].DID);
 		 } );
+		
 		$scope.selMode = 0;
 
 		//Learning Mode
@@ -96,22 +100,6 @@
 		$scope.clickProgress = function(){
 			$scope.selMode = 2;
 		}
-
-		// $scope.startPlay = function(did){
-		// 	console.log("Passed DeckID: " + did);
-		// 	  var formData = { password: 'test pwd', email : 'test email' };
-		//                 var postData = 'myData='+JSON.stringify(formData);
-		//                 $http({
-		//                         method : 'POST',
-		//                         url : 'game.php',
-		//                         data: postData,
-		//                         headers : {'Content-Type': 'application/x-www-form-urlencoded'}  
-		//                 }).success(function(res){
-		//                         console.log(res);
-		//                 }).error(function(error){
-		//                         console.log(error);
-		// 	};
-		// });
 
 	});
 </script>

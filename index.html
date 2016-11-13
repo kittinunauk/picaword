@@ -13,7 +13,6 @@
           <script type="text/javascript" src="js/angular-flippy.js"></script>
           <script type="text/javascript" src="js/loginsignup.js"></script>
           <script src="node_modules/angular-animate/angular-animate.js"></script>
-
           <link rel="stylesheet" href="css/index.css">
 
 </head>
@@ -29,12 +28,12 @@
         <button ng-show="loginbtn" ng-click="getLoginForm()" >LOGIN</button>
      </div>
      <div class="col-xs-12 loginform" ng-show="loginform">
-          <form action="login.php" method="POST">
+          <form action="php/login.php" method="POST">
         
-            <input type="email" name="emaillogin" id="emaillogin" class="input-txt" placeholder="E-MAIL" required> <br>
-            <input type="password" name="passlogin" id="passlogin" class="input-txt" placeholder="Password xD"required> <br>
+            <input type="email" name="emaillogin" id="emaillogin" class="input-txt" placeholder="E-MAIL" ng-model="email" required> <br>
+            <input type="password" name="passlogin" id="passlogin" class="input-txt" placeholder="Password xD" ng-model  = "password" required> <br>
             <br><button type="submit" id="loginbtn" name="loginSubmit" ng-click="checkLogin()"> Login </button>
-            {{errMsg}}
+            
            <br><a href="#" ng-click="getSignupForm()">SIGN UP</a>
           </form>
      </div>
@@ -43,7 +42,7 @@
      </div>
 
       <div class="col-xs-12 signupform" ng-show="signupform">
-          <form action="signup.php" method="POST">
+          <form action="php/signup.php" method="POST">
             <input type="text" name="name" id="name" class="signup-input-txt" placeholder="Name"required> <br>
             <input type="email" name="emailsignup" id="emaillsignup" class="signup-input-txt" placeholder="E-Mail" required> <br>
             <input type="password" name="passsignup" id="passsignup" class="signup-input-txt" placeholder="Password"required> <br>
@@ -60,35 +59,33 @@
 
 <script>
   
-  //Declare Angular application name 
-  var app = angular.module('picaword',['ngAnimate']);
-  //Declare Angular controller named "wordCtrl"
-  app.controller('indexCtrl',  function ($scope, $http, $filter, $sce,$timeout){
-      $scope.loginbtn = true;
-      $scope.loginform = false;
-      $scope.signupform = false;
-      $scope.signupbtn = true;
-
-      $scope.errMsg = "";
-
-      $scope.getLoginForm = function(){
-        $scope.loginbtn = false;
-        $scope.signupbtn = false;
-        $scope.signupform = false;
-       $timeout( function(){ $scope.loginform = true }, 300);
-      };
-      $scope.getSignupForm = function(){
-        $scope.loginbtn = false;
-        $scope.signupbtn = false;
+    //Declare Angular application name 
+    var app = angular.module('picaword',['ngAnimate']);
+    //Declare Angular controller named "wordCtrl"
+    app.controller('indexCtrl',  function ($scope, $http, $filter, $sce,$timeout){
+        $scope.loginbtn = true;
         $scope.loginform = false;
-        $timeout( function(){ $scope.signupform = true }, 300);
-      };
+        $scope.signupform = false;
+        $scope.signupbtn = true;
 
-      $scope.checkLogin = function(){
-        $scope.errMsg = "Invalid username/password";
-      }
+        $scope.errMsg = "";
 
-    });
+        $scope.getLoginForm = function(){
+          $scope.loginbtn = false;
+          $scope.signupbtn = false;
+          $scope.signupform = false;
+         $timeout( function(){ $scope.loginform = true }, 300);
+        };
+
+        $scope.getSignupForm = function(){
+          $scope.loginbtn = false;
+          $scope.signupbtn = false;
+          $scope.loginform = false;
+          $timeout( function(){ $scope.signupform = true }, 300);
+        };
+
+          
+      });
 
 </script>
 </html>
