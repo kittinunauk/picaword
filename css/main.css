@@ -4,3 +4,11 @@
 	width: 169px;
 	display: inline-block;
 }
+
+img{
+	transition: 0.5s ease-in-out;
+}
+
+img:hover{
+	opacity: 0.25;
+}

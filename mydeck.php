@@ -44,9 +44,8 @@
 		       <form action="game.php" method="POST">
 		      	<input type="text" name="did" value="{{n.DID}}" placeholder="{{n.DID}}" ng-hide="true">
 		      	<input type="text" name="selMode" value="{{selMode}}" placeholder="{{selMode}}" ng-hide="true">
-		      	<button type="button" class="btn btn-success" ng-click="removeDeck(n.DID)"> Remove</button>
 		      	<button type="submit" class="btn btn-success" ng-click="clickLearning()"> Learning</button>
-		      	<button type="submit" class="btn btn-warning" ng-click="clickProgress()">Play</button>
+		      	<button type="submit" class="btn btn-warning" ng-click="clickProgress()"> Keep Progress</button>
 		      	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 		      </form>
 		        <!-- <button type="button" class="btn btn-default" ng-click="startPlay(n.DID)">Play </button> -->
@@ -56,51 +55,27 @@
 
 		  </div>
 		</div>
-		</div>
-
-
-		<h2>All Decks</h2>
-		<div ng-repeat="m in decklists" id="deckprev">
-		 <!-- Trigger the modal with an image -->
-		
-		 <img src={{m.CIPath}} class="crop" width="169" height="169px" data-toggle="modal" data-target="#{{m.DID}}">
-		<!-- Modal for display information-->
-		<div id="{{m.DID}}" class="modal fade" role="dialog" ng-controller="deckCtrl">
-		  <div class="modal-dialog">
-
-		    <!-- Modal content-->
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title">Deck Information</h4>
-		      </div>
-		      <div class="modal-body">
-		        <p><b>Deck Name: </b> {{m.DName}} <br>
-		        	<b> Description: </b> {{m.DDescription}} <br>
-			<b> No. of cards: </b>{{m.DMax}} <br>
-			 <b> Deck Creator: </b>{{m.DCreator}} <br>
-			 Deck Rating: {{m.DRating}} 
-		        </p>
-		      </div>
-		      <div class="modal-footer">
-		       <form action="game.php" method="POST">
-		      	<input type="text" name="did" value="{{n.DID}}" placeholder="{{m.DID}}" ng-hide="true">
-		      	<input type="text" name="selMode" value="{{selMode}}" placeholder="{{selMode}}" ng-hide="true">
-		      	<button type="button" class="btn btn-success" ng-click="addDeck(m.DID)"> Add</button>
-		      	
-		      	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		      </form>
-		        <!-- <button type="button" class="btn btn-default" ng-click="startPlay(n.DID)">Play </button> -->
-		       
-		      </div>
-		    </div>
-
-		  </div>
-		</div>
-
+		<!-- <table class="table">
+			<td><b>Deck #</b></td>
+			<td><b>Name</b></td>
+			<td><b>Description</b></td>
+			<td><b>No. of Cards</b></td>
+			<td><b>Creator</b></td>
+			<td><b>Rating</b></td>
+			<td ><b>Action</b></td>
+			<tr ng-repeat="n in decks"> 
+				<td>{{ n.DID }}</td>
+				<td>{{ n.DName }}</td>
+				<td>{{ n.DDescription}}</td>
+				<td>{{ n.DMax}} </td>
+				<td>{{ n.DCreator}} </td>
+				<td>{{ n.DRating}} </td>
+				<td><a href="#"> Play  </a></td>   
+				<!-- <a href="#"> Edit</a></td> -->
+		<!--	</tr>
+		</table>-->
 		</div>
 	</div>
-
 	</div>
 </body>
 
@@ -108,13 +83,8 @@
 	//Declare Angular application name decklist
 	var uid = <?php echo $_SESSION['UID']; ?>;
 	var app = angular.module('decklist', []);
-	app.controller('deckCtrl',  function ($scope, $http, $filter, $sce,$location,$window){
+	app.controller('deckCtrl',  function ($scope, $http, $filter, $sce,$location){
 		console.log("User ID: " + uid);
-
-		$http.get('php/decklist_retrieve.php',{ params: { uid: uid } }).then(function (response) {
-		    	$scope.decklists = response.data.decklist;
-		    	console.log($scope.decklists[0]);
-		 } );
 
 		$http.get('php/deck_retrieve.php',{ params: { uid: uid } }).then(function (response) {
 		    	$scope.decks = response.data.records;
@@ -130,27 +100,6 @@
 		//Keep Progress Mode
 		$scope.clickProgress = function(){
 			$scope.selMode = 2;
-		}
-
-		//Remove from my deck
-		$scope.removeDeck = function(deckid){
-			console.log(deckid);
-			$http.get('php/removedeck.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
-		    		//$scope.decks = response.data.records;
-		    		console.log("remove completed");
-		    		$window.location.reload();
-
-		 	});
-		}
-		//Add to my deck
-		$scope.addDeck = function(deckid){
-			console.log(deckid);
-			$http.get('php/adddeck.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
-		    		//$scope.decks = response.data.records;
-		    		console.log("add completed");
-		    		$window.location.reload();
-
-		 	});
 		}
 
 	});
