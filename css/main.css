@@ -5,10 +5,81 @@
 	display: inline-block;
 }
 
+#container {
+	border:  2px solid black;
+	position: relative;
+	padding: 0% 8% 8% 8%;
+	margin: 2%;
+	width: auto;
+}
+
 img{
 	transition: 0.5s ease-in-out;
 }
 
 img:hover{
 	opacity: 0.25;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #2B728C;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+
+
+#left.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+#left.button span:after{
+  content: '«';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -20px;
+  transition: 0.5s;
+}
+#left.button:hover span {
+  padding-left: 25px;
+}
+#left.button:hover span:after {
+  opacity: 1;
+  left: 0;
+}
+
+
+
+#right.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+#right.button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+#right.button:hover span {
+  padding-right: 25px;
+}
+#right.button:hover span:after {
+  opacity: 1;
+  right: 0;
 }

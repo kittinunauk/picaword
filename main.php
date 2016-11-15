@@ -8,14 +8,46 @@
 	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
 	<!-- Include Bootstrap Framework -->
 	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/sidebar.css">
+	<script src="js/sidebar.js"></script>
 </head>
 <body>
 	<div id="container">
-	<?php echo "Welcome, ".$_SESSION['UUser']."!";?>
-	<a href="php/logout.php">Logout</a>
+
+	<!--Sidebar-->
+	<div class="row">
+	        	<div class="col-sm-4 col-md-3 sidebar">
+			<div class="mini-submenu">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>	
+			</div>
+	    	<div class="list-group">
+        		<span href="#" class="list-group-item active">
+          		  Menu
+            		<span class="pull-right" id="slide-submenu">
+                	<i class="fa fa-times"></i>
+            		</span>
+        		</span>
+	        	<a href="#" class="list-group-item">
+	            	<i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
+	        	</a>
+	        	<a href="#" class="list-group-item">
+	            	<i class="fa fa-folder-open-o"></i>  Decks <span class="badge">2</span>
+	        	</a>
+	        	<a href="php/logout.php" class="list-group-item">
+	            	<i class="fa fa-key"></i> Logout
+	        	</a>
+	    	</div>        
+		</div>
+    	</div>
+	
+	<!--Deck zone-->
 	<div ng-controller="deckCtrl">
 		<h2>My Decks</h2>
 		<div ng-repeat="n in decks" id="deckprev">
