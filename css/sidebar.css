@@ -1,6 +1,6 @@
 body,
 html {
-  background-color: #00A2E2;
+  background-color: white;
 }
 
 .mini-submenu{
@@ -55,4 +55,18 @@ a.list-group-item:hover, button.list-group-item:hover{
   border-radius: 4px;
   cursor: pointer;
   transition: 0.1s
+}
+
+
+.overlay {
+    position: fixed;
+    display: none;
+    width: @full-width;
+    height: @full-height;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.4);
+    z-index: 1;
 }
