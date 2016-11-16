@@ -67,7 +67,7 @@
             <span class="hamb-middle"></span>
             <span class="hamb-bottom"></span>
           </button>
-            <div class="container">
+            <div class="container" style="padding-left: 100px; padding-top: 0px;">
                 <div class="row">
                     <div class="col-sm-4 col-md-3 sidebar">
                        <!--Deck zone-->
