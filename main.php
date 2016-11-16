@@ -17,7 +17,6 @@
 	<script src="js/sidebar.js"></script>
 </head>
 <body>
-	<div id="container">
 
 	<!--Sidebar-->
 	<div class="row">
@@ -43,12 +42,19 @@
 	        	<a href="php/logout.php" class="list-group-item">
 	            	<i class="fa fa-key"></i> Logout
 	        	</a>
+	        	<a href="php/logout.php" class="list-group-item">
+	            	<i class="fa fa-key"></i> 555
+	        	</a>
 	    	</div>        
 		</div>
     	</div>
+
+	<div id="container" style="padding-left: 10px; padding-top: 10px;">
+
+	
 	
 	<!--Deck zone-->
-	<div ng-controller="deckCtrl">
+	<div ng-controller="deckCtrl" >
 		<h2>My Decks</h2>
 		<div ng-repeat="n in decks" id="deckprev">
 		 <!-- Trigger the modal with an image -->

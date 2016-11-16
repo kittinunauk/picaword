@@ -1,7 +1,12 @@
+body,
+html {
+  background-color: #00A2E2;
+}
+
 .mini-submenu{
   display:none;  
-  background-color: rgba(0, 0, 0, 0);  
-  border: 1px solid rgba(0, 0, 0, 0.9);
+  background-color: #00A2E2;  
+  border: 1px solid #00A2E2;
   border-radius: 4px;
   padding: 9px;  
   /*position: relative;*/
@@ -9,8 +14,26 @@
 
 }
 
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+    color: #fff;
+    background-color: black;
+    border-color: #337ab7;
+}
+
+a.list-group-item, button.list-group-item {
+    color: #555;
+    background-color: whitesmoke;
+}
+
+a.list-group-item:hover, button.list-group-item:hover{
+    background-color: #8FD868;
+    padding-left: 25px;
+}
+
 .mini-submenu:hover{
   cursor: pointer;
+  transition: 0.1s;
+
 }
 
 .mini-submenu .icon-bar {
@@ -22,13 +45,14 @@
 }
 
 .mini-submenu .icon-bar {
-  background-color: #000;
+  background-color: white;
 }
 
 #slide-submenu{
-  background: rgba(0, 0, 0, 0.45);
+  background: black;
   display: inline-block;
   padding: 0 8px;
   border-radius: 4px;
   cursor: pointer;
+  transition: 0.1s
 }

@@ -9,8 +9,9 @@
 	border:  2px solid black;
 	position: relative;
 	padding: 0% 8% 8% 8%;
-	margin: 2%;
+	margin: 0% 0% 0% 35%;
 	width: auto;
+  display: inline-block; 
 }
 
 img{
