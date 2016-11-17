@@ -22,11 +22,11 @@
         	<script type="text/javascript" src="js/angular-flippy.js"></script>
 </head>
 <body>
-<div class="col-md-4"></div>
-<div ng-controller="wordCtrl" class="col-md-4" > 
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-2"></div>
+<div ng-controller="wordCtrl"  class="col-lg-4 col-md-4 col-sm-4 col-xs-8"style="margin: 20px; position: relative; width: 350px;"> 
 		<b>Deck ID:</b> {{deckid}}   <br>
 		<!-- CSS Boostrap Progress bar -->
-		<div style="border: 5px solid black">
+		<div"">
 
 		<div ng-hide="cardprogressbar">
 		Card:
@@ -50,13 +50,9 @@
 		</div>
 		
 	
-		<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" style="text-align:center;">
+		<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out">
 	                    	<flippy-front>
-<<<<<<< HEAD
-	                    		<img ng-src="/picaword/{{cards[pid-1].CIPath}}" width="100px" height="200px">
-=======
-	                    		<img ng-src="/picaword/{{cards[pid-1].CIPath}}" width="150px" height="200px">
->>>>>>> ITCS210/master
+	                    		<img ng-src="/picaword/{{cards[pid-1].CIPath}}" width="100px" height="200px" >
 
 	                    	</flippy-front>
 	                    	<flippy-back>
@@ -67,7 +63,8 @@
 	                   	 </flippy-back>
                 	</flippy>
                 	
-
+		<div>
+		<br>
 		<input type="text" ng-model="userans" ng-disabled="inputtext" ng-show="inputtextvisible">
 		<input type="button" value="Submit" ng-click="getVerdict()" ng-show="submitbtnvisible">
 		<input type="button" value="Prev" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn">
@@ -79,12 +76,12 @@
 			<input type="text" ng-hide="true" value="{{deckid}}" name = "fdeckid">
 			<button type="submit">Quit</button>
 		</form>
-
+		</div>
 		</div>
 	
 </div>
 
-<div class="col-md-4"></div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-2"></div>
 </body>
 
 <script>
