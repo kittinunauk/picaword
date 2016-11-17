@@ -84,8 +84,8 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Deck Information</h4>
           </div>
-          <div class="modal-body" color="grey">
-            <p><b>Deck Name: </b> {{n.DName}} <br>
+          <div class="modal-body">
+            <p color="#23454C"><b>Deck Name: </b> {{n.DName}} <br>
               <b> Description: </b> {{n.DDescription}} <br>
       <b> No. of cards: </b>{{n.DMax}} <br>
        <b> Deck Creator: </b>{{n.DCreator}} <br>

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: GreatLake;
+    src: url(../fonts/GreatLakesShadowNF.ttf);
+}
+
 #deckprev{
 	border: 2px solid red;
 	position: relative;
@@ -21,6 +26,15 @@ img{
 
 img:hover{
 	opacity: 0.25;
+}
+
+body h2{
+      color: #12869E;
+      font-family: GreatLake;
+      border: 5px solid white;
+      background-color: white;
+      border-radius: 10px 10px 10px 10px;
+      padding: 10px;
 }
 
 .button {
@@ -84,4 +98,15 @@ img:hover{
 #right.button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+.modal-title{
+    color: white;
+}
+.modal-header{
+  background-color: #2C6772;
+}
+.modal-body{
+  background-color: #FFFFFF;
+  color: #23454C;
 }

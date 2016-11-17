@@ -294,11 +294,11 @@ body h1,
 body h2,
 body h3,
 body h4 {
-  color: grey;
+  /*color: grey;*/
 }
 body p,
 body blockquote {
-  color: grey
+  /*color: grey*/
 }
 body a {
   color: rgba(242, 242, 193, 0.8);
