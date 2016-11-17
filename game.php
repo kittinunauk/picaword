@@ -26,6 +26,8 @@
 <div ng-controller="wordCtrl" class="col-md-4" > 
 		<b>Deck ID:</b> {{deckid}}   <br>
 		<!-- CSS Boostrap Progress bar -->
+		<div style="border: 5px solid black">
+
 		<div ng-hide="cardprogressbar">
 		Card:
 		<div class="progress">
@@ -37,7 +39,6 @@
 		</div>
 		</div>
 
-		
 		<div ng-hide="scoreprogressbar">
 		Progress:
 		<div class="progress">
@@ -47,10 +48,11 @@
 	  		</div>
 		</div>
 		</div>
-
-		<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out">
+		
+	
+		<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" style="text-align:center;">
 	                    	<flippy-front>
-	                    		<img ng-src="/picaword/{{cards[pid-1].CIPath}}" width="250" height="250">
+	                    		<img ng-src="/picaword/{{cards[pid-1].CIPath}}" width="100px" height="200px">
 
 	                    	</flippy-front>
 	                    	<flippy-back>
@@ -60,6 +62,7 @@
 	                    		</p>
 	                   	 </flippy-back>
                 	</flippy>
+                	
 
 		<input type="text" ng-model="userans" ng-disabled="inputtext" ng-show="inputtextvisible">
 		<input type="button" value="Submit" ng-click="getVerdict()" ng-show="submitbtnvisible">
@@ -72,6 +75,8 @@
 			<input type="text" ng-hide="true" value="{{deckid}}" name = "fdeckid">
 			<button type="submit" ng-show="savebtn">Save Progress</button>
 		</form>
+
+		</div>
 	
 </div>
 
