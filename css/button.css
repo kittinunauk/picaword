@@ -2,7 +2,7 @@
   display: inline-block;
   border-radius: 4px;
   background-color: #2B728C;
-  border: none;
+  border: 2px solid;
   color: #FFFFFF;
   text-align: center;
   font-size: 28px;
@@ -58,4 +58,28 @@
 #right.button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+
+
+#normal.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0s;
+  
+}
+#normal.button span:after {
+  position: absolute;
+  opacity: 0;
+}
+#normal.button:hover{
+  color:#2B728C;
+  background-color:white;
+  border: 2px solid #2B728C;
+}
+#normal.button:hover span:after {
+  opacity: 1;
+  right: 0;
+  
 }
