@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html ng-app="picaword">
 <head>
+	<meta charset="UTF-8">
 	<title>Play</title>
 	<!-- Include AngularJS Framework -->
 	<script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
@@ -20,9 +21,48 @@
         	<link rel="stylesheet" href="css/angular-flippy.css">
         	<link rel="stylesheet" href="css/angular-flippy-fancy.css">
         	<script type="text/javascript" src="js/angular-flippy.js"></script>
+        	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+  <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
-<div class="col-md-4"></div>
+
+	<div id="wrapper">
+        <div class="overlay"></div>
+    
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                       MENU 
+                    </a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-home"></i> Profile</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-folder"></i> Decks</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-cog"></i> Logout</a>
+                </li>
+               
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+          </button>
+            
 <div ng-controller="wordCtrl" class="col-md-4" > 
 		<b>Deck ID:</b> {{deckid}}   <br>
 		<!-- CSS Boostrap Progress bar -->
@@ -52,11 +92,9 @@
 	
 		<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" style="text-align:center;">
 	                    	<flippy-front>
-<<<<<<< HEAD
+
 	                    		<img ng-src="/picaword/{{cards[pid-1].CIPath}}" width="100px" height="200px">
-=======
-	                    		<img ng-src="/picaword/{{cards[pid-1].CIPath}}" width="150px" height="200px">
->>>>>>> ITCS210/master
+	                   
 
 	                    	</flippy-front>
 	                    	<flippy-back>
@@ -249,5 +287,16 @@
 	
 
 </script>
+
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+
+    <script src="js/index.js"></script>
+
 
 </html>
