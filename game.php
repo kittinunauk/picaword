@@ -52,7 +52,11 @@
 	
 		<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" style="text-align:center;">
 	                    	<flippy-front>
+<<<<<<< HEAD
 	                    		<img ng-src="/picaword/{{cards[pid-1].CIPath}}" width="100px" height="200px">
+=======
+	                    		<img ng-src="/picaword/{{cards[pid-1].CIPath}}" width="150px" height="200px">
+>>>>>>> ITCS210/master
 
 	                    	</flippy-front>
 	                    	<flippy-back>
@@ -73,7 +77,7 @@
 		<form action="php/progress.php" method="POST">
 			<input type="text" ng-hide="true" value="{{userprogress}}" name = "fprogress" >
 			<input type="text" ng-hide="true" value="{{deckid}}" name = "fdeckid">
-			<button type="submit" ng-show="savebtn">Save Progress</button>
+			<button type="submit">Quit</button>
 		</form>
 
 		</div>
