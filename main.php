@@ -96,9 +96,9 @@
           </div>
           <div class="modal-footer">
            <form action="game.php" method="POST">
-            <input type="text" name="did" value="{{n.DID}}" placeholder="{{n.DID}}" ng-hide="true">
-            <input type="text" name="selMode" value="{{selMode}}" placeholder="{{selMode}}" ng-hide="true">
-            
+            <input type="text" name="did" value="{{n.DID}}"ng-hide="true">
+            <input type="text" name="selMode" value="{{selMode}}"  ng-hide="true">
+            <input type="text" name="dname" value="{{n.DName}}"  ng-hide="true">
             <button type="submit" class="btn btn-info" ng-click="clickLearning()"> Learning</button>
             <button type="submit" class="btn btn-success" ng-click="clickProgress()">Play</button>
             <button type="button" class="btn btn-danger" ng-click="removeDeck(n.DID)"> Remove</button>

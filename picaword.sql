@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 17, 2016 at 05:19 AM
+-- Generation Time: Nov 17, 2016 at 05:39 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.21
 
@@ -103,7 +103,21 @@ CREATE TABLE `progress` (
 INSERT INTO `progress` (`UID`, `DID`, `UProgress`) VALUES
 (2, 2, 50),
 (2, 1, 0),
-(12, 2, 0);
+(12, 1, 0),
+(13, 1, 20),
+(1, 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `Rating`
+--
+
+CREATE TABLE `Rating` (
+  `DID` int(11) DEFAULT NULL,
+  `UID` int(11) DEFAULT NULL,
+  `RATE` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -134,7 +148,12 @@ INSERT INTO `Users` (`UID`, `UUser`, `UPass`, `UEmail`) VALUES
 (9, 'xx', 'xx', 'xx'),
 (10, '', 'xx', 'xx'),
 (11, '1', 'xx', 'xx'),
-(12, 'suppy', 'jotdown', 'suppy@suppy.com');
+(12, 'suppy', 'jotdown', 'suppy@suppy.com'),
+(13, 'IamMitsuo', '1234', 'mitsuo@gmail.com'),
+(22, 'test2', '1', 'test2@test2.com'),
+(23, 'pvl', 'pvl', 'pvl@pvl.com'),
+(24, 'jimmy', 'jimmy', 'jimmy@jimmy.com'),
+(25, 'j', 'j', 'j@j.com');
 
 --
 -- Indexes for dumped tables
@@ -171,7 +190,7 @@ ALTER TABLE `Card`
 -- AUTO_INCREMENT for table `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `UID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `UID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

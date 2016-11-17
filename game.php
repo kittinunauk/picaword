@@ -2,6 +2,8 @@
 	session_start();
 	$did =  $_POST['did'];  // Receive from deck id (main.php)
 	$selMode = $_POST['selMode'];
+	$dname =  $_POST['dname'];
+	// echo gettype($dname);
 	$deckid = $did;
 	$mode =  $selMode; // 1 for Learning and 2 for KeepProgress
 	$userID = $_SESSION['UID'];
@@ -29,7 +31,7 @@
 </head>
 <body>
 
-	<div id="wrapper">
+        <div id="wrapper">
         <div class="overlay"></div>
     
     
@@ -42,13 +44,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-home"></i> Profile</a>
+                    <a href="main.php"><i class="fa fa-fw fa-home"></i> Profile</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-folder"></i> Decks</a>
+                    <a href="main.php"><i class="fa fa-fw fa-folder"></i> Decks</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-cog"></i> Logout</a>
+                    <a href="php/logout.php"><i class="fa fa-fw fa-cog"></i> Logout</a>
                 </li>
                
             </ul>
@@ -62,12 +64,10 @@
             <span class="hamb-middle"></span>
             <span class="hamb-bottom"></span>
           </button>
-            
-<div ng-controller="wordCtrl" class="col-md-4" > 
-		<b>Deck ID:</b> {{deckid}}   <br>
+            <div class="col-md-4"></div>
+	<div ng-controller="wordCtrl" class="col-md-4" > 
+		<b>Deck Name:</b> {{deckname}} <br>
 		<!-- CSS Boostrap Progress bar -->
-		<div style="border: 5px solid black">
-
 		<div ng-hide="cardprogressbar">
 		Card:
 		<div class="progress">
@@ -121,7 +121,6 @@
 			<button class="button" id="normal" type="submit"><span>Quit</span></button>
 		</form>
 
-		</div>
 	
 </div>
 
@@ -133,6 +132,7 @@
 	//Get deckid from user (php)
 	var _deckid = <?php echo $deckid ?>;
 	var _mode = <?php echo "".$mode ?>;
+	var _deckname ="This is for deckname";
 	//Declare queue for storing cards that user answer incorrectly
 	var queue = [];
 	//Declare Angular application name myApp
@@ -143,6 +143,7 @@
 		/*General Initialization*/
 		 //Pass _deckid to use in wordCtrl 
 		 $scope.deckid = _deckid;
+		 $scope.deckname = _deckname;
 		 //Verdict
 		 $scope.verdict = "-";	    
 		 //User Score
