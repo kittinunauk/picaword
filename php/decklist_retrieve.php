@@ -28,4 +28,6 @@
 	$outp ='{"decklist":'.$json.'}';
 	echo ($outp);
 
+	//B6DCFE
+
 ?>

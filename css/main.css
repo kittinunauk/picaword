@@ -2,7 +2,8 @@
 	border: 2px solid red;
 	position: relative;
 	width: 169px;
-	display: inline-block;
+       display: inline-block;
+       margin: auto;
 }
 
 #container {
@@ -11,7 +12,7 @@
 	padding: 0% 8% 8% 8%;
 	margin: 0% 0% 0% 35%;
 	width: auto;
-  display: inline-block; 
+       display: inline-block; 
 }
 
 img{

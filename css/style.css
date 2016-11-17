@@ -37,6 +37,7 @@ body {
 #wrapper.toggled #page-content-wrapper {
   margin-right: -220px;
   position: absolute;
+
 }
 #sidebar-wrapper {
   -moz-transition: all 0.5s ease;
@@ -58,6 +59,7 @@ body {
 #page-content-wrapper {
   padding-top: 70px;
   width: 100%;
+
 }
 /*-------------------------------*/
 /*     Sidebar nav styles        */

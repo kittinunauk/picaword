@@ -22,13 +22,10 @@
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
 
   <link rel="stylesheet" href="css/style.css">
-
   
 </head>
 
 <body>
-
-
       <div id="wrapper">
         <div class="overlay"></div>
     
@@ -59,7 +56,6 @@
             </ul>
         </nav>
         <!-- /#sidebar-wrapper -->
-
         <!-- Page Content -->
         <div id="page-content-wrapper">
           <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
@@ -69,10 +65,11 @@
           </button>
             <div class="container" style="padding-left: 100px; padding-top: 0px;">
                 <div class="row">
-                    <div class="col-sm-4 col-md-3 sidebar">
+                    <div class="col-sm-12 col-md-12 sidebar">
                        <!--Deck zone-->
   <div ng-controller="deckCtrl" >
     <h2>My Decks</h2>
+    
     <div ng-repeat="n in decks" id="deckprev">
      <!-- Trigger the modal with an image -->
      <img src={{n.CIPath}} class="crop" width="169" height="169px" data-toggle="modal" data-target="#{{n.DID}}">
@@ -99,9 +96,10 @@
            <form action="game.php" method="POST">
             <input type="text" name="did" value="{{n.DID}}" placeholder="{{n.DID}}" ng-hide="true">
             <input type="text" name="selMode" value="{{selMode}}" placeholder="{{selMode}}" ng-hide="true">
-            <button type="button" class="btn btn-success" ng-click="removeDeck(n.DID)"> Remove</button>
-            <button type="submit" class="btn btn-success" ng-click="clickLearning()"> Learning</button>
-            <button type="submit" class="btn btn-warning" ng-click="clickProgress()">Play</button>
+            
+            <button type="submit" class="btn btn-info" ng-click="clickLearning()"> Learning</button>
+            <button type="submit" class="btn btn-success" ng-click="clickProgress()">Play</button>
+            <button type="button" class="btn btn-danger" ng-click="removeDeck(n.DID)"> Remove</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </form>
             <!-- <button type="button" class="btn btn-default" ng-click="startPlay(n.DID)">Play </button> -->
@@ -141,11 +139,9 @@
            <form action="game.php" method="POST">
             <input type="text" name="did" value="{{n.DID}}" placeholder="{{m.DID}}" ng-hide="true">
             <input type="text" name="selMode" value="{{selMode}}" placeholder="{{selMode}}" ng-hide="true">
-            <button type="button" class="btn btn-success" ng-click="addDeck(m.DID)"> Add</button>
-            
+            <button type="button" class="btn btn-warning" ng-click="addDeck(m.DID)"> Add</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </form>
-            <!-- <button type="button" class="btn btn-default" ng-click="startPlay(n.DID)">Play </button> -->
            
           </div>
         </div>
@@ -179,7 +175,7 @@
 
     $http.get('php/decklist_retrieve.php',{ params: { uid: uid } }).then(function (response) {
           $scope.decklists = response.data.decklist;
-          console.log($scope.decklists[0]);
+          console.log($scope.decklists.length);
      } );
 
     $http.get('php/deck_retrieve.php',{ params: { uid: uid } }).then(function (response) {
