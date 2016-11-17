@@ -72,7 +72,7 @@
     
     <div ng-repeat="n in decks" id="deckprev">
      <!-- Trigger the modal with an image -->
-     <img src={{n.CIPath}} class="crop" width="169" height="169px" data-toggle="modal" data-target="#{{n.DID}}">
+     <img src={{n.CIPath}} class="crop" width="150px" height="200px" data-toggle="modal" data-target="#{{n.DID}}">
     {{n.UProgress}} %
     <!-- Modal for display information-->
     <div id="{{n.DID}}" class="modal fade" role="dialog" ng-controller="deckCtrl">
@@ -116,7 +116,7 @@
     <div ng-repeat="m in decklists" id="deckprev">
      <!-- Trigger the modal with an image -->
     
-     <img src={{m.CIPath}} class="crop" width="169" height="169px" data-toggle="modal" data-target="#{{m.DID}}">
+     <img src={{m.CIPath}} class="crop" width="150px" height="200px" data-toggle="modal" data-target="#{{m.DID}}">
     <!-- Modal for display information-->
     <div id="{{m.DID}}" class="modal fade" role="dialog" ng-controller="deckCtrl">
       <div class="modal-dialog">
