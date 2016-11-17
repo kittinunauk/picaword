@@ -73,7 +73,9 @@
     <div ng-repeat="n in decks" id="deckprev">
      <!-- Trigger the modal with an image -->
      <img src={{n.CIPath}} class="crop" width="150px" height="200px" data-toggle="modal" data-target="#{{n.DID}}">
+    <div>
     {{n.UProgress}} %
+    </div>
     <!-- Modal for display information-->
     <div id="{{n.DID}}" class="modal fade" role="dialog" ng-controller="deckCtrl">
       <div class="modal-dialog">

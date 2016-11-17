@@ -1,5 +1,4 @@
 <?php
-   
    require("config.php");
    //Getting data from user in login form.
    $userEmail = $_POST['emaillogin'];
