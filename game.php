@@ -70,7 +70,7 @@
 		<form action="php/progress.php" method="POST">
 			<input type="text" ng-hide="true" value="{{userprogress}}" name = "fprogress" >
 			<input type="text" ng-hide="true" value="{{deckid}}" name = "fdeckid">
-			<button type="submit" ng-show="savebtn">Save Progress</button>
+			<button type="submit" ng-show="savebtn">Quit</button>
 		</form>
 	
 </div>
