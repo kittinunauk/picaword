@@ -18,14 +18,13 @@
 	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<!-- Include AngularJS directive to flip card with a CSS3 flip animation
 	Ref. https://github.com/zwacky/angular-flippy -->
-        	<link rel="stylesheet" href="css/angular-flippy.css">
-        	<link rel="stylesheet" href="css/angular-flippy-fancy.css">
-        	<script type="text/javascript" src="js/angular-flippy.js"></script>
-        	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-  <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-
-      <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/angular-flippy.css">
+	<link rel="stylesheet" href="css/angular-flippy-fancy.css">
+	<script type="text/javascript" src="js/angular-flippy.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	<link rel="stylesheet" href="css/button.css">
+	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+ 	<link rel="stylesheet" href="css/style.css">
 
 </head>
 <body>
@@ -108,15 +107,18 @@
                 	
 
 		<input type="text" ng-model="userans" ng-disabled="inputtext" ng-show="inputtextvisible">
-		<input type="button" value="Submit" ng-click="getVerdict()" ng-show="submitbtnvisible">
+		<button class="button" id="normal" type="button" ng-click="getVerdict()" ng-show="submitbtnvisible"><span>Submit</span></button>
+		<button class="button" id="left" type="button" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn"><span>Prev</span></button>
+		<button class="button" id="right" type="button" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"><span>Next</span></button>
+<!-- 		<input type="button" value="Submit" ng-click="getVerdict()" ng-show="submitbtnvisible">
 		<input type="button" value="Prev" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn">
-		<input type="button" value="Next" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn">
+		<input type="button" value="Next" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"> -->
 		{{result}}
 
 		<form action="php/progress.php" method="POST">
 			<input type="text" ng-hide="true" value="{{userprogress}}" name = "fprogress" >
 			<input type="text" ng-hide="true" value="{{deckid}}" name = "fdeckid">
-			<button type="submit">Quit</button>
+			<button class="button" id="normal" type="submit"><span>Quit</span></button>
 		</form>
 
 		</div>
