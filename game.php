@@ -44,13 +44,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="main.php">
                     <i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                    <i class="fa fa-folder-open-o"></i>  Decks <span class="badge">2</span>
+                    <a href="main.php">
+                    <i class="fa fa-fw fa-home"></i>  Home <span class="badge">2</span>
                     </a>
                 </li>
                 <li>
