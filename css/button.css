@@ -2,7 +2,7 @@
   display: inline-block;
   border-radius: 50px;
   background-color: #2B728C;
-  border: 3px solid;
+  border: 3px solid #F9F6D4;
   color: #FFFFFF;
   text-align: center;
   font-size: 26px;
@@ -13,6 +13,11 @@
   cursor: pointer;
   margin: 5px;
 }
+.button:active {
+  background-color: white;
+  color:black;
+}
+
 
 
 #left.button span {
@@ -36,6 +41,8 @@
   opacity: 1;
   left: 0;
 }
+
+
 
 
 
@@ -76,7 +83,7 @@
 }
 #normal.button:hover{
   color:#2B728C;
-  background-color:white;
+  background-color:#F9F6D4;
   border: 3px solid #2B728C;
 }
 #normal.button:hover span:after {
