@@ -74,7 +74,7 @@
 		
 			<input type="text" ng-hide="true" value="{{userprogress}}" name = "fprogress" >
 			<input type="text" ng-hide="true" value="{{deckid}}" name = "fdeckid">
-			<button class="button" id="normal" type="submit"><span>Quit</span></button>
+			<button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003;"><i class="fa fa-close"></i></button>
 		</form>
 		
 		<!-- CSS Boostrap Progress bar -->

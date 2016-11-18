@@ -81,12 +81,11 @@
   opacity: 0;
 }
 #normal.button:hover{
-  color:#2B728C;
-  background-color:#F9F6D4;
-  border: 3px solid #2B728C;
+  color:black;
+  background-color:#white;
+  border: 3px solid black;
 }
 #normal.button:hover span:after {
   opacity: 1;
   right: 0;
-  
 }
