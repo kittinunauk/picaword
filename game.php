@@ -2,8 +2,6 @@
 	session_start();
 	$did =  $_POST['did'];  // Receive from deck id (main.php)
 	$selMode = $_POST['selMode'];
-	$dname =  $_POST['dname'];
-	// echo gettype($dname);
 	$deckid = $did;
 	$mode =  $selMode; // 1 for Learning and 2 for KeepProgress
 	$userID = $_SESSION['UID'];
@@ -69,9 +67,16 @@
             <span class="hamb-middle"></span>
             <span class="hamb-bottom"></span>
           </button>
-            <div class="col-md-4"></div>
-	<div ng-controller="wordCtrl" class="col-md-4" > 
-		<b>Deck Name:</b> {{deckname}} <br>
+            <div class="col-lg-4 col-md-4 col-sm-3 col-xs-2"></div>
+	<div ng-controller="wordCtrl" class="col-lg-4 col-md-4 col-sm-6 col-xs-9"> 
+		<b>Deck Name:</b> {{deckname}} 
+		<form action="php/progress.php" method="POST" style="float: right;">
+		
+			<input type="text" ng-hide="true" value="{{userprogress}}" name = "fprogress" >
+			<input type="text" ng-hide="true" value="{{deckid}}" name = "fdeckid">
+			<button class="button" id="normal" type="submit"><span>Quit</span></button>
+		</form>
+		
 		<!-- CSS Boostrap Progress bar -->
 		<div ng-hide="cardprogressbar">
 		Card:
@@ -93,9 +98,8 @@
 	  		</div>
 		</div>
 		</div>
-		
-	
-		<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" style="text-align:center;">
+		<div>
+		<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" >
 	                    	<flippy-front>
 
 	                    		<img ng-src="/picaword/{{cards[pid-1].CIPath}}" width="100px" height="200px">
@@ -109,27 +113,24 @@
 	                    		</p>
 	                   	 </flippy-back>
                 	</flippy>
-                	
-
+                	</div>
+		<div style="position: relative; margin: 350px 0px 0px 0px;">
 		<input type="text" ng-model="userans" ng-disabled="inputtext" ng-show="inputtextvisible">
 		<button class="button" id="normal" type="button" ng-click="getVerdict()" ng-show="submitbtnvisible"><span>Submit</span></button>
 		<button class="button" id="left" type="button" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn"><span>Prev</span></button>
 		<button class="button" id="right" type="button" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"><span>Next</span></button>
+		
 <!-- 		<input type="button" value="Submit" ng-click="getVerdict()" ng-show="submitbtnvisible">
 		<input type="button" value="Prev" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn">
 		<input type="button" value="Next" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"> -->
 		{{result}}
 
-		<form action="php/progress.php" method="POST">
-			<input type="text" ng-hide="true" value="{{userprogress}}" name = "fprogress" >
-			<input type="text" ng-hide="true" value="{{deckid}}" name = "fdeckid">
-			<button class="button" id="normal" type="submit"><span>Quit</span></button>
-		</form>
-
+		
+		</div>
 	
 </div>
 
-<div class="col-md-4"></div>
+<div class="col-md-4 col-sm-3 col-xs-2"></div>
 </body>
 
 <script>
@@ -137,7 +138,6 @@
 	//Get deckid from user (php)
 	var _deckid = <?php echo $deckid ?>;
 	var _mode = <?php echo "".$mode ?>;
-	var _deckname ="This is for deckname";
 	//Declare queue for storing cards that user answer incorrectly
 	var queue = [];
 	//Declare Angular application name myApp
@@ -148,7 +148,6 @@
 		/*General Initialization*/
 		 //Pass _deckid to use in wordCtrl 
 		 $scope.deckid = _deckid;
-		 $scope.deckname = _deckname;
 		 //Verdict
 		 $scope.verdict = "-";	    
 		 //User Score
@@ -181,6 +180,13 @@
 			$scope.savebtn = true;
 		 }
 	 
+		$http.get('php/deckinfo_retreive.php', { params: { deckid: _deckid } }).then(function (response) {
+		    	$scope.deckinfos = response.data.deckinfo;
+		    	// console.log($scope.deckinfos[0])
+		    	console.log($scope.deckinfos[1]);
+		    	$scope.deckname = $scope.deckinfos[0].DName;
+		 } );
+
 		$http.get('php/cards_retrieve.php', { params: { deckid: _deckid } }).then(function (response) {
 		    	$scope.cards = response.data.records;
 		    	$scope.description = $scope.cards[0].CDescription;
@@ -195,10 +201,10 @@
 		    	console.log(queue);
 		    	 //Picture ID
 		    	 $scope.pid = parseInt(queue[0]);
-		 	//$scope.pid = parseInt($scope.cards[0].CID);	
-		 	//In case in Learning mode
 		 	if(_mode===1) $scope.userscore = maxcard;    	
 		 } );
+
+		
 	   	   	
 		 $scope.result = "";
 

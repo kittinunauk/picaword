@@ -1,12 +1,12 @@
 flippy.fancy {
-  /*float: left;*/
-  margin: 0 10px 10px 0;
+  /*border: 1px solid red;*/
+  margin: auto;
   position: relative;
   font-size: .8em;
   cursor: pointer;
-  width: 200px;
-  height: 250px;
-
+  width: 250px;
+  height: 325px;
+  /*padding: 5px;*/
 }
 flippy.fancy img {
   height: 100%;
@@ -17,7 +17,7 @@ flippy.fancy flippy-front {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 900;
+  /*z-index: 900;*/
   width: inherit;
   height: inherit;
   /*border: 1px solid #ccc;*/
@@ -35,7 +35,7 @@ flippy.fancy flippy-back {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 800;
+  /*z-index: 800;*/
   width: inherit;
   height: inherit;
   border: 1px solid #000000;
