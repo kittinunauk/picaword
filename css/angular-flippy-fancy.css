@@ -1,11 +1,12 @@
 flippy.fancy {
   /*border: 1px solid red;*/
-  margin: auto;
+  /*margin: 5%;*/
   position: relative;
   font-size: .8em;
   cursor: pointer;
   width: 250px;
   height: 325px;
+  float:left;
   /*padding: 5px;*/
 }
 flippy.fancy img {
