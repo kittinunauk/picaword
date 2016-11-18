@@ -203,7 +203,6 @@
             //$scope.decks = response.data.records;
             console.log("remove completed");
             $window.location.reload();
-
       });
     }
     //Add to my deck

@@ -23,7 +23,8 @@
 	            $statement->bindParam("password", $password,PDO::PARAM_STR) ;
 	            $statement->bindParam("email", $email,PDO::PARAM_STR) ;
 	            $statement->execute();
-	            $data = $statement>fetch(PDO::FETCH_OBJ);
+	            $data = array();
+	            $data = $statement->fetch(PDO::FETCH_OBJ);
 	            var_dump($data);
 	            $_SESSION['UID'] = $data->UID; 
 	            $_SESSION['UUser'] = $data->UUser;
