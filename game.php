@@ -25,6 +25,7 @@
 	<link rel="stylesheet" href="css/button.css">
 	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
  	<link rel="stylesheet" href="css/style.css">
+ 	<link rel="stylesheet" href="css/game.css">
 
 </head>
 <body>
@@ -61,14 +62,15 @@
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
+        <div id="page-content-wrapper" ng-controller="wordCtrl">
           <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
             <span class="hamb-top"></span>
             <span class="hamb-middle"></span>
             <span class="hamb-bottom"></span>
           </button>
             <div class="col-lg-4 col-md-4 col-sm-3 col-xs-2"></div>
-	<div ng-controller="wordCtrl" class="col-lg-4 col-md-4 col-sm-6 col-xs-9"> 
+	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-9"> 
+		<div class="container">
 		<b>Deck Name:</b> {{deckname}} 
 		<form action="php/progress.php" method="POST" style="float: right;">
 		
@@ -88,18 +90,19 @@
 	  		</div>
 		</div>
 		</div>
-
+		
 		<div ng-hide="scoreprogressbar">
 		Progress:
 		<div class="progress">
 	  		<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{userscore}}"
 	  			aria-valuemin="0" aria-valuemax="100" style="width:{{(userscore/maxcard)*100}}%;">
-	    		{{(userscore/maxcard)*100 | number:0}}  %
+	    		<!-- {{(userscore/maxcard)*100 | number:0}}  % -->
 	  		</div>
 		</div>
 		</div>
-		<div>
-		<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" >
+		</div>
+	    <div style="padding: 3%"> 
+		<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" style="z-index: 5;">
 	                    	<flippy-front>
 
 	                    		<img ng-src="/picaword/{{cards[pid-1].CIPath}}" width="100px" height="200px">
@@ -114,9 +117,9 @@
 	                   	 </flippy-back>
                 	</flippy>
                 	</div>
-		<div style="position: relative; margin: 350px 0px 0px 0px;">
-		<input type="text" ng-model="userans" ng-disabled="inputtext" ng-show="inputtextvisible">
-		<button class="button" id="normal" type="button" ng-click="getVerdict()" ng-show="submitbtnvisible"><span>Submit</span></button>
+		<div style="position: relative; margin: 0px 0px 0px 0px; text-align:left;">
+		<input ng-type="text" ng-model="userans" ng-disabled="inputtext" ng-show="inputtextvisible" ng-enter="getVerdict()"> 
+		<button class="button" id="normal" type="button" ng-click="getVerdict()" ng-show="submitbtnvisible" style="width: 40px;padding-top: 4px;"><span class="glyphicon glyphicon-circle-arrow-right"></span></button>
 		<button class="button" id="left" type="button" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn"><span>Prev</span></button>
 		<button class="button" id="right" type="button" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"><span>Next</span></button>
 		
@@ -124,13 +127,14 @@
 		<input type="button" value="Prev" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn">
 		<input type="button" value="Next" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"> -->
 		{{result}}
-
-		
 		</div>
 	
 </div>
 
-<div class="col-md-4 col-sm-3 col-xs-2"></div>
+<div class="col-md-2 col-sm-3" style="height: 100%;"> 
+<img src="{{verdictimg}}" width="200px" height="200px">
+
+ {{verdict}}</div>
 </body>
 
 <script>
@@ -142,6 +146,19 @@
 	var queue = [];
 	//Declare Angular application name myApp
 	var app = angular.module('picaword', ['angular-flippy']);
+
+	app.directive('ngEnter', function () {
+    		return function (scope, element, attrs) {
+        		element.bind("keydown keypress", function (event) {
+	            		if(event.which === 13) {
+		                scope.$apply(function (){
+		                scope.$eval(attrs.ngEnter);
+	                	});
+	                	event.preventDefault();
+            		}
+        		});
+    		};
+	});
 	//Declare Angular controller named "wordCtrl"
 	app.controller('wordCtrl',  function ($scope, $http, $filter, $sce){
 
@@ -150,6 +167,7 @@
 		 $scope.deckid = _deckid;
 		 //Verdict
 		 $scope.verdict = "-";	    
+		 $scope.verdictimg ="img/verdict/default.png";
 		 //User Score
 		 $scope.userscore = 0;
 		 $scope.userprogress = 0;
@@ -226,6 +244,8 @@
 		 		$scope.userprogress  = ($scope.userscore/$scope.maxcard)*100;
 		 		console.log("User Progression(%): " + $scope.userprogress);
 
+		 		$scope.verdictimg ="img/verdict/yes.png";
+
 		 	}else{
 		 		console.log("Verdict: Wrong Answer");
 		 		$scope.verdict = "Wrong Answer";
@@ -233,6 +253,7 @@
 
 		 		queue.push(queue.shift());
 		 		console.log("Current Queue: " + queue);
+		 		$scope.verdictimg ="img/verdict/no.png";
 		 	}
 
 		 	// In case it's  a last card in deck
@@ -277,6 +298,7 @@
 		 	}else{
 		 		$scope.description  = $scope.cards[$scope.pid-1].CDescription;
 		 		$scope.currentword =  $scope.cards[$scope.pid-1].CWord;
+		 		 $scope.verdictimg ="img/verdict/default.png";
 		 	}
 
 		 	
