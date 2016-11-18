@@ -39,20 +39,25 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
+                   <a href="#">
                        MENU 
                     </a>
                 </li>
                 <li>
-                    <a href="main.php"><i class="fa fa-fw fa-home"></i> Profile</a>
+                    <a href="#">
+                    <i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
+                    </a>
                 </li>
                 <li>
-                    <a href="main.php"><i class="fa fa-fw fa-folder"></i> Decks</a>
+                    <a href="#">
+                    <i class="fa fa-folder-open-o"></i>  Decks <span class="badge">2</span>
+                    </a>
                 </li>
                 <li>
-                    <a href="php/logout.php"><i class="fa fa-fw fa-cog"></i> Logout</a>
+                    <a href="php/logout.php">
+                    <i class="fa fa-key"></i> Logout
+                    </a>
                 </li>
-               
             </ul>
         </nav>
         <!-- /#sidebar-wrapper -->
