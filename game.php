@@ -1,5 +1,9 @@
 <?php
 	session_start();
+	//Check whether user's already login or not?
+      	if(!isset($_SESSION['UID'])){
+       		header("Location: index.php"); 
+     	 }
 	$did =  $_POST['did'];  // Receive from deck id (main.php)
 	$selMode = $_POST['selMode'];
 	$deckid = $did;
@@ -105,9 +109,8 @@
 		<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" style="z-index: 5;">
 	                    	<flippy-front>
 
-	                    		<img ng-src="/picaword/{{cards[pid-1].CIPath}}" width="100px" height="200px">
-	                   
-
+	                    		<img src="{{cards[pid-1].CIPath}}" width="100px" height="200px">
+	                  
 	                    	</flippy-front>
 	                    	<flippy-back>
 	                    		<p>	

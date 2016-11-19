@@ -1,4 +1,11 @@
 <!--This is index Page-->
+<?php
+     session_start();
+     //Check whether user's already login or not?
+     if(isset($_SESSION['UID'])){
+       header("Location: main.php"); 
+     }
+?>
 
 <!DOCTYPE html>
 <html ng-app="picaword">
