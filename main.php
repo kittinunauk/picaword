@@ -1,4 +1,10 @@
-<?php session_start() ?>
+<?php 
+      session_start();
+      //Check whether user's already login or not?
+      if(!isset($_SESSION['UID'])){
+       header("Location: index.php"); 
+      }
+?>
 <!DOCTYPE html>
 <html ng-app="decklist">
 <head>
@@ -175,7 +181,6 @@
 
     $http.get('php/decklist_retrieve.php',{ params: { uid: uid } }).then(function (response) {
           $scope.decklists = response.data.decklist;
-          console.log($scope.decklists.length);
      } );
 
     $http.get('php/deck_retrieve.php',{ params: { uid: uid } }).then(function (response) {
@@ -206,7 +211,7 @@
     //Add to my deck
     $scope.addDeck = function(deckid){
       console.log(deckid);
-      $http.get('php/adddeck.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
+      $http.get('php/add_deck.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
             //$scope.decks = response.data.records;
             console.log("add completed");
             $window.location.reload();

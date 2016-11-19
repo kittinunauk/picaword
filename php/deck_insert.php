@@ -1,0 +1,22 @@
+<?php
+	session_start();
+	require("config.php");
+
+	//Getting data from user in registration form.
+	$dcreator = $_SESSION['UUser'];
+	$dname = $_POST['dname'];
+	$ddes = $_POST['ddes'];
+	try {
+	            $statement = $dbConnection->prepare("INSERT INTO Deck(DName,DDescription,DCreator) VALUES (:dname,:ddes,:dcreator)");
+	            $statement->bindParam("dcreator", $dcreator,PDO::PARAM_STR) ;
+	            $statement->bindParam("dname", $dname,PDO::PARAM_STR) ;
+	            $statement->bindParam("ddes", $ddes,PDO::PARAM_STR) ;
+	            $statement->execute();
+	            header("Location: ../adddeck.php"); // Page redirecting to home.php after registers
+
+	}catch (PDOException $e) {
+		echo 'Connection failed: ' . $e->getMessage();
+	}
+
+	
+?>
