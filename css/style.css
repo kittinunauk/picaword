@@ -106,17 +106,13 @@ body {
 .sidebar-nav li:nth-child(5):before {
   background-color: #ff4243;
 }
-.sidebar-nav li:nth-child(6):before {
-  background-color: #00a2e2;
-}
-.sidebar-nav li:nth-child(7):before {
-  background-color: #ffc700;
-}
-.sidebar-nav li:nth-child(8):before {
-  background-color: #ff4243;
-}
-.sidebar-nav li:nth-child(9):before {
-  background-color: #00a2e2;
+
+.navbar {
+    min-height: 53px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 6px;
 }
 .sidebar-nav li:hover:before {
   -webkit-transition: width 0.2s ease-in;
@@ -156,7 +152,7 @@ body {
 }
 .sidebar-nav > .sidebar-brand {
   font-size: 20px;
-  height: 65px;
+  height: 110px;
   line-height: 44px;
 }
 /*-------------------------------*/

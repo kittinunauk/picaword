@@ -33,9 +33,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">
                 <li class="sidebar-brand">
-                    <a href="#">
-                       MENU 
-                    </a>
+                    <img id="nohover" src="img/web/LOGOMINI.png" alt="" align="center">
                 </li>
                 <li>
                     <a href="#">
