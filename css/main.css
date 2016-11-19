@@ -28,6 +28,10 @@ img:hover{
 	opacity: 0.25;
 }
 
+img#nohover:hover{
+  opacity: 1;
+}
+
 body h2{
       color: #12869E;
       font-family: GreatLake;
