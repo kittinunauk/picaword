@@ -52,6 +52,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="adddeck.php">
+                    <i class="fa fa-folder-open-o"></i>  Add Deck <span class="badge">2</span>
+                    </a>
+                </li>
+                <li>
                     <a href="php/logout.php">
                     <i class="fa fa-key"></i> Logout
                     </a>
