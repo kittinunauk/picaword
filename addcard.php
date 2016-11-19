@@ -1,5 +1,9 @@
 <?php
-  $did = $_POST['DID'];
+  if(!isset($_POST['DID'])){
+    header("Location: main.php"); 
+  }else{
+    $did = $_POST['DID'];
+  }
 ?>
 
 <!DOCTYPE html>
@@ -22,15 +26,13 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/sidebar.css">
   <script src="js/sidebar.js"></script>
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-
   <link rel="stylesheet" href="css/style.css">
+  
+   <link rel="stylesheet" href="css/main.css">
 </head>
 <body ng-app="app" ng-controller="addDeckCtrl">
 

@@ -4,6 +4,7 @@
       	if(!isset($_SESSION['UID'])){
        		header("Location: index.php"); 
      	 }
+
 	$did =  $_POST['did'];  // Receive from deck id (main.php)
 	$selMode = $_POST['selMode'];
 	$deckid = $did;
@@ -26,8 +27,9 @@
 	<link rel="stylesheet" href="css/angular-flippy-fancy.css">
 	<script type="text/javascript" src="js/angular-flippy.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-	<link rel="stylesheet" href="css/button.css">
 	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
+	
+ 	<link rel="stylesheet" href="css/button.css">
  	<link rel="stylesheet" href="css/style.css">
  	<link rel="stylesheet" href="css/game.css">
 
@@ -36,8 +38,6 @@
 
         <div id="wrapper">
         <div class="overlay"></div>
-    
-    
         <!-- Sidebar -->
         <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
             <ul class="nav sidebar-nav">

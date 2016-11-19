@@ -10,25 +10,19 @@
 <head>
   <meta charset="UTF-8">
   <!-- http://jsfiddle.net/AhakQ/13/ -->
-  <title>Deck List</title>
-  <!-- Include AngularJS Framework -->
+  <title>Main Page</title>
+  <!-- Include Framework & Library -->
   <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
-  <!-- Include Bootstrap Framework -->
   <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/sidebar.css">
   <script src="js/sidebar.js"></script>
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-
   <link rel="stylesheet" href="css/style.css">
-  
 </head>
 
 <body>

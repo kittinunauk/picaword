@@ -1,33 +1,31 @@
+<?php
+      session_start();
+      //Check whether user's already login or not?
+      if(!isset($_SESSION['UID'])){
+       header("Location: index.php"); 
+      }
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- Include AngularJS Framework &modules -->
   <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
   <script src="bower_components/ng-img-crop-full-extended/compile/minified/ng-img-crop.js"></script>
   <link rel="stylesheet" type="text/css" href="bower_components/ng-img-crop-full-extended/compile/minified/ng-img-crop.css">
-  <style>
-    .cropArea {
-      background: #E4E4E4;
-      overflow: hidden;
-      width:300px;
-      height:300px;
-    }
-  </style>
   <!-- Include Bootstrap Framework -->
   <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/sidebar.css">
   <script src="js/sidebar.js"></script>
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body ng-app="app" ng-controller="addDeckCtrl">
 
     <h2>My Created Deck</h2>
