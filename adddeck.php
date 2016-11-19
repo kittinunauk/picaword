@@ -31,15 +31,48 @@
 <body ng-app="app" ng-controller="addDeckCtrl">
 
     <h2>My Created Deck</h2>
-    <div ng-repeat="n in mydeck">
+    <div ng-repeat="n in mydeck" style="display: inline-block;">
 
-    	{{n.DName}}  {{n.DDescription}}  <button type="button"  data-toggle="modal" data-target="#addcard">Add New card</button>
+	<img src={{n.DCover}} width="150px" height="200px" data-toggle="modal" data-target ="#{{n.DID}}">
+    	<!-- <button type="button"  data-toggle="modal" data-target="#addcard">Add New card</button> -->
+
+	<!-- Modal for display information-->
+	<div id="{{n.DID}}" class="modal fade" role="dialog">
+	      <div class="modal-dialog">
+
+	        <!-- Modal content-->
+	        <div class="modal-content">
+	          <div class="modal-header">
+	            <button type="button" class="close" data-dismiss="modal">&times;</button>
+	            <h4 class="modal-title">Deck Information</h4>
+	          </div>
+	          <div class="modal-body">
+	            <p><b>Deck Name: </b> {{n.DName}}<br>
+	                   <b> Description: </b>{{n.DDescription}} <br>
+	            </p>
+	          </div>
+	          <div class="modal-footer">
+	          <form action="addcard.php" method="POST">
+
+	            <input type="text" value="{{n.DName}}" name="DName" ng-hide="true"/>
+	            <input type="text" value="{{n.DID}}" name="DID" ng-hide="true"/>
+	            <button type="submit" class="btn btn-warning"> Add Card</button>
+	            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+	           </form>
+	           
+	          </div>
+	         
+	        </div>
+
+	      </div>
+	  </div>
+
+
 
     </div>
     <button type="button"  data-toggle="modal" data-target="#dummy">Add New Deck</button>
     
-    
-
+   
     <!-- Modal for display information-->
     <div id="dummy" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -68,56 +101,6 @@
       </div>
     </div>
 
-    <!-- Modal for display add card information-->
-    <div id="addcard" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Add Card</h4>
-          </div>
-          <div class="modal-body">
-	<!-- FORM -->
-	    <form name="userForm" ng-submit="submitForm()">
-	    <div class="form-group">
-	        <label>Card Name</label>
-	        <input type="text" name="cname" class="form-control" ng-model="cardName">
-	        <span ng-show="errorName">{{errorName}}</span>
-	    </div>
-	    <div class="form-group">
-	        <label>Card Description</label>
-	        <input type="text" name="cdes" class="form-control" ng-model="cardDes">
-	        <span ng-show="errorUserName">{{errorUserName}}</span>
-	    </div>
-	    <div class="form-group">
-	        <label>Category</label>
-	        <input type="text" name="ccate" class="form-control" ng-model="cardCate">
-	        <span ng-show="errorEmail">{{errorEmail}}</span>
-	    </div>
-	    <button type="submit" class="btn btn-primary">Submit</button>
-	    {{errorImg}}
-	    {{message}}
-	    </form>
-	  <a href="#" ng-click="submitForm()">Click</a>
-	  {{codeStatus}}
-	  <div>Select an image file: <input type="file" id="fileInput" /></div>
-	  <div class="cropArea">
-	          <img-crop image="myImage" area-type="rectangle" aspect-ratio="0.7" result-image="myCroppedImage" result-image-size='{w: 340,h: 200}' init-max-area="true"></img-crop>
-	  </div>
-	  <div>Cropped Image:</div>
-	  <div><img ng-src="{{myCroppedImage}}" /></div>
-          
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-warning"> Add</button>
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
 
 </body>
 <script>
@@ -140,7 +123,7 @@
 	        // Posting data to php file
 	        $http({
 	          method  : 'POST',
-	          url     : 'php/card_insert.php',
+	          url     : 'php/cards_insert.php',
 	          data    : $scope.user, //forms user object
 	          headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
 	         })

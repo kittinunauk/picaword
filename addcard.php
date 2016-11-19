@@ -1,3 +1,7 @@
+<?php
+  $did = $_POST['DID'];
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,14 +34,42 @@
 </head>
 <body ng-app="app" ng-controller="addDeckCtrl">
 
-    <h2>My Created Deck</h2>
-    <div ng-repeat="n in mydeck">
+    <h2><?php echo $_POST['DName'] ?></h2>
 
-    	<button type="button"  data-toggle="modal" data-target="#addcard">Add New card</button>
-
-    </div>
+    <div ng-repeat="m in cardlist" style="display: inline-block;">
+     <!-- Trigger the modal with an image -->
     
+     <img src={{m.CIPath}} class="crop" width="150px" height="200px" data-toggle="modal" data-target="#{{m.CID}}">
 
+
+    <!-- Modal for display information-->
+      <div id="{{m.CID}}" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Deck Information</h4>
+            </div>
+            <div class="modal-body">
+
+              <p><b>Card Name: </b> {{m.CWord}}<br>
+                     <b> Card Description: </b> {{m.CDescription}}<br>
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+     </div>
+    <button type="button"  data-toggle="modal" data-target="#addcard">Add New card</button>
+    <div ng-repeat="n in cardlist">
+    </div>
     <!-- Modal for display add card information-->
     <div id="addcard" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -66,13 +98,10 @@
 	        <input type="text" name="ccate" class="form-control" ng-model="cardCate">
 	        <span ng-show="errorEmail">{{errorEmail}}</span>
 	    </div>
-	    <button type="submit" class="btn btn-primary">Submit</button>
-	    {{errorImg}}
-	    {{message}}
-	    </form>
-	  <a href="#" ng-click="submitForm()">Click</a>
+	   
 	  {{codeStatus}}
 	  <div>Select an image file: <input type="file" id="fileInput" /></div>
+         {{errorImg}}
 	  <div class="cropArea">
 	          <img-crop image="myImage" area-type="rectangle" aspect-ratio="0.7" result-image="myCroppedImage" result-image-size='{w: 340,h: 200}' init-max-area="true"></img-crop>
 	  </div>
@@ -81,7 +110,10 @@
           
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-warning"> Add</button>
+           <button type="submit" class="btn btn-primary">Submit</button>
+     
+      {{message}}
+      </form>
             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
           </div>
         </div>
@@ -92,12 +124,13 @@
 </body>
 <script>
 
-    angular.module('app', ['ngImgCrop']).controller('addDeckCtrl', function($scope,$http,$templateCache) {
-      
+    var DID = <?php echo $did ?>;
 
-         $http.get('php/mydeck_retreive.php').then(function (response) {
-         	$scope.mydeck = response.data.decklist;
-         	console.log($scope.mydeck);
+    angular.module('app', ['ngImgCrop']).controller('addDeckCtrl', function($scope,$http,$templateCache,$window) {
+    
+         $http.get('php/mydeckcard_retreive.php',{ params: { deckid: DID } }).then(function (response) {
+         	$scope.cardlist = response.data.cardlistindeck;
+         	console.log($scope.cardlist);
          });
 
          $scope.submitForm = function() {
@@ -106,11 +139,12 @@
         	         $scope.user.cname = $scope.cardName;
         	         $scope.user.cdes = $scope.cardDes;
         	         $scope.user.ccate = $scope.cardCate;
+                       $scope.user.did = DID;
 	         $scope.user.cimg = $scope.myCroppedImage;
 	        // Posting data to php file
 	        $http({
 	          method  : 'POST',
-	          url     : 'php/card_insert.php',
+	          url     : 'php/cards_insert.php',
 	          data    : $scope.user, //forms user object
 	          headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
 	         })
@@ -123,7 +157,8 @@
 	              $scope.errorImg = data.errors.cimg;
 	            } else {
 	              $scope.message = data.message;
-	              console.log($scope.message);
+	              //console.log($scope.message);
+                    $window.location.reload();
 	            }
 	          });
         };
