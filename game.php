@@ -120,7 +120,8 @@
                 	</div>
 		<div style="position: relative; margin: 0px 0px 0px 0px; text-align:left;">
 		<input ng-type="text" ng-model="userans" ng-disabled="inputtext" ng-show="inputtextvisible" ng-enter="getVerdict()"> 
-		<button class="button" id="normal" type="button" ng-click="getVerdict()" ng-show="submitbtnvisible" style="width: 40px;padding-top: 4px;" title="Click here to submit"><span class="glyphicon glyphicon-circle-arrow-right"></span></button>
+		<button class="button" id="normal" type="button" ng-click="getVerdict()" ng-show="submitbtnvisible" style="width: 40px;padding-top: 4px;" title="Click here to submit">
+			<span class="glyphicon glyphicon-circle-arrow-right"></span></button>
 		<button class="button" id="left" type="button" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn"><span>Prev</span></button>
 		<button class="button" id="right" type="button" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"><span>Next</span></button>
 		
@@ -167,8 +168,8 @@
 		 //Pass _deckid to use in wordCtrl 
 		 $scope.deckid = _deckid;
 		 //Verdict
-		 $scope.verdict = "-";	    
-		 $scope.verdictimg ="img/verdict/default.png";
+		 $scope.verdict = "";	    
+		 $scope.verdictimg ="img/mascot/cardy-so.png";
 		 //User Score
 		 $scope.userscore = 0;
 		 $scope.userprogress = 0;
@@ -245,7 +246,7 @@
 		 		$scope.userprogress  = ($scope.userscore/$scope.maxcard)*100;
 		 		console.log("User Progression(%): " + $scope.userprogress);
 
-		 		$scope.verdictimg ="img/verdict/yes.png";
+		 		$scope.verdictimg ="img/mascot/cardy-yes.png";
 
 		 	}else{
 		 		console.log("Verdict: Wrong Answer");
@@ -254,7 +255,7 @@
 
 		 		queue.push(queue.shift());
 		 		console.log("Current Queue: " + queue);
-		 		$scope.verdictimg ="img/verdict/no.png";
+		 		$scope.verdictimg ="img/mascot/cardy-no.png";
 		 	}
 
 		 	// In case it's  a last card in deck
@@ -279,7 +280,7 @@
 		 		$scope.prevbtn = false;
 		 		$scope.pid++;
 		 	 }else{
-			 	$scope.verdict = "-";
+			 	$scope.verdict = "";
 			 	$scope.pid = queue[0];
 			 	$scope.submitbtnvisible = true;
 			 	$scope.nextbtnvisible = false;
@@ -299,7 +300,7 @@
 		 	}else{
 		 		$scope.description  = $scope.cards[$scope.pid-1].CDescription;
 		 		$scope.currentword =  $scope.cards[$scope.pid-1].CWord;
-		 		 $scope.verdictimg ="img/verdict/default.png";
+		 		 $scope.verdictimg ="img/mascot/cardy-so.png";
 		 	}
 
 		 	
