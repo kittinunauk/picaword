@@ -1,5 +1,4 @@
 <?php
-	session_start();
 	require("config.php");
 
 	//Getting data from user in registration form.
