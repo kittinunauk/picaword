@@ -12,7 +12,7 @@
       $statement->execute();
       $count = $statement->rowCount();
       $data = $statement->fetch(PDO::FETCH_OBJ);
-      var_dump($data);
+      //var_dump($data);
 
       // Storing user session value
       if($count) {
@@ -21,8 +21,10 @@
          $_SESSION['UUser'] = $data->UUser;
          header("Location: ../main.php"); 
       }else {
-         echo "Invalid!";
-         echo $count;
+         echo "<script>";
+         echo "alert('Invalid username or password, try again!');";
+         echo "</script>";
+         echo "<a href='../index.php'>Click here to go login page</a>";
       } 
          
    }catch (PDOException $e) {
