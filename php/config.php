@@ -1,4 +1,5 @@
 <?php
+
 /*
 This is database configuration file.
 */

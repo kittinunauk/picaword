@@ -23,9 +23,66 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
   <link rel="stylesheet" href="css/style.css">
+
+  <style>#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  bottom: 50%
+  right:50%;
+  z-index: 1;
+  width: 5px;
+  height: 5px;
+  border: 10px solid #00BFFF;
+  border-radius: 50%;
+  border-top: 10px solid white;
+  width: 150px;
+  height: 150px;
+  -webkit-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+}
+</style>
+
 </head>
 
-<body>
+<body onload="myFunction()">
+
+  <div id="loader"></div>
+
+  <div style="display:none;" id="myDiv" class="animate-bottom">
       <div id="wrapper">
         <div class="overlay"></div>
     
@@ -71,11 +128,11 @@
                     <div class="col-sm-12 col-md-12 sidebar">
                        <!--Deck zone-->
   <div ng-controller="deckCtrl" >
-    <h2>My Decks</h2>
+    <h2>My Progress Decks</h2>
     
     <div ng-repeat="n in decks" id="deckprev">
      <!-- Trigger the modal with an image -->
-     <img src={{n.CIPath}} class="crop" width="150px" height="200px" data-toggle="modal" data-target="#{{n.DID}}">
+     <img src={{n.DCover}} class="crop" width="150px" height="200px" style="border-radius: 10px;" data-toggle="modal" data-target="#{{n.DID}}">
     <div>
     {{n.UProgress}} %
     </div>
@@ -92,9 +149,7 @@
           <div class="modal-body">
             <p color="#23454C"><b>Deck Name: </b> {{n.DName}} <br>
               <b> Description: </b> {{n.DDescription}} <br>
-      <b> No. of cards: </b>{{n.DMax}} <br>
        <b> Deck Creator: </b>{{n.DCreator}} <br>
-       Deck Rating: {{n.DRating}} 
             </p>
           </div>
           <div class="modal-footer">
@@ -121,7 +176,7 @@
     <div ng-repeat="m in decklists" id="deckprev">
      <!-- Trigger the modal with an image -->
     
-     <img src={{m.CIPath}} class="crop" width="150px" height="200px" data-toggle="modal" data-target="#{{m.DID}}">
+     <img src={{m.DCover}} class="crop" width="150px" height="200px" style="border-radius: 10px;" data-toggle="modal" data-target="#{{m.DID}}">
     <!-- Modal for display information-->
     <div id="{{m.DID}}" class="modal fade" role="dialog" ng-controller="deckCtrl">
       <div class="modal-dialog">
@@ -135,9 +190,7 @@
           <div class="modal-body">
             <p><b>Deck Name: </b> {{m.DName}} <br>
               <b> Description: </b> {{m.DDescription}} <br>
-      <b> No. of cards: </b>{{m.DMax}} <br>
        <b> Deck Creator: </b>{{m.DCreator}} <br>
-       Deck Rating: {{m.DRating}} 
             </p>
           </div>
           <div class="modal-footer">
@@ -165,6 +218,8 @@
 
     </div>
     <!-- /#wrapper -->
+</div>
+
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
 
@@ -172,6 +227,16 @@
 
 </body>
 <script>
+var myVar;
+
+function myFunction() {
+    myVar = setTimeout(showPage, 30);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
   //Declare Angular application name decklist
   var uid = <?php echo $_SESSION['UID']; ?>;
   var app = angular.module('decklist', []);
@@ -201,7 +266,7 @@
     //Remove from my deck
     $scope.removeDeck = function(deckid){
       console.log(deckid);
-      $http.get('php/removedeck.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
+      $http.get('php/remove_deck_progress.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
             //$scope.decks = response.data.records;
             console.log("remove completed");
             $window.location.reload();
@@ -210,7 +275,7 @@
     //Add to my deck
     $scope.addDeck = function(deckid){
       console.log(deckid);
-      $http.get('php/add_deck.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
+      $http.get('php/add_deck_progress.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
             //$scope.decks = response.data.records;
             console.log("add completed");
             $window.location.reload();

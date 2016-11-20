@@ -69,7 +69,7 @@
                        <h2>My Created Deck</h2>
     <div ng-repeat="n in mydeck" style="display: inline-block;">
 
-  <img src={{n.DCover}} width="150px" height="250px" data-toggle="modal" data-target ="#{{n.DID}}">
+  <img src={{n.DCover}} width="150px" height="250px" data-toggle="modal" data-target ="#{{n.DID}}" style="border-radius: 10px;">
       <!-- <button type="button"  data-toggle="modal" data-target="#addcard">Add New card</button> -->
 
   <!-- Modal for display information-->
