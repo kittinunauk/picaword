@@ -47,7 +47,7 @@
                 </li>
                 <li>
                     <a href="adddeck.php">
-                    <i class="fa fa-folder-open-o"></i>  Add Deck <span class="badge">2</span>
+                    <i class="fa fa-plus-square"></i>  Add Deck <span class="badge">2</span>
                     </a>
                 </li>
                 <li>
