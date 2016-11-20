@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>Add Card</title>
   <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
   <script src="bower_components/ng-img-crop-full-extended/compile/minified/ng-img-crop.js"></script>
   <link rel="stylesheet" type="text/css" href="bower_components/ng-img-crop-full-extended/compile/minified/ng-img-crop.css">

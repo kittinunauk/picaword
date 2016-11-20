@@ -95,7 +95,7 @@ body {
   color: #ffffff;
 }
 .sidebar-nav li:nth-child(2):before {
-  background-color: #ffffff;
+  background-color: black;
 }
 .sidebar-nav li:nth-child(3):before {
   background-color: #00a2e2;
