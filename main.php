@@ -23,9 +23,66 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
   <link rel="stylesheet" href="css/style.css">
+
+  <style>#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  bottom: 50%
+  right:50%;
+  z-index: 1;
+  width: 5px;
+  height: 5px;
+  border: 10px solid #00BFFF;
+  border-radius: 50%;
+  border-top: 10px solid white;
+  width: 150px;
+  height: 150px;
+  -webkit-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+}
+</style>
+
 </head>
 
-<body>
+<body onload="myFunction()">
+
+  <div id="loader"></div>
+
+  <div style="display:none;" id="myDiv" class="animate-bottom">
       <div id="wrapper">
         <div class="overlay"></div>
     
@@ -161,6 +218,8 @@
 
     </div>
     <!-- /#wrapper -->
+</div>
+
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
 
@@ -168,6 +227,16 @@
 
 </body>
 <script>
+var myVar;
+
+function myFunction() {
+    myVar = setTimeout(showPage, 30);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
   //Declare Angular application name decklist
   var uid = <?php echo $_SESSION['UID']; ?>;
   var app = angular.module('decklist', []);
