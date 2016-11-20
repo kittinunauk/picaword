@@ -44,7 +44,7 @@
                 </li>
                 <li>
                     <a href="main.php">
-                    <i class="fa fa-fw fa-home"></i>  Home <span class="badge">2</span>
+                    <i class="fa fa-fw fa-home"></i>  Home
                     </a>
                 </li>
                 <li>
