@@ -48,12 +48,12 @@
                 </li>
                 <li>
                     <a href="#">
-                    <i class="fa fa-folder-open-o"></i>  Decks <span class="badge">2</span>
+                    <i class="fa fa-folder-open-o"></i>  Decks
                     </a>
                 </li>
                 <li>
                     <a href="adddeck.php">
-                    <i class="fa fa-plus-square"></i>  Add Deck <span class="badge">2</span>
+                    <i class="fa fa-plus-square"></i>  Add Deck
                     </a>
                 </li>
                 <li>
