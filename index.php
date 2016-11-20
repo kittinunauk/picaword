@@ -6,7 +6,6 @@
        header("Location: main.php"); 
      }
 ?>
-
 <!DOCTYPE html>
 <html ng-app="picaword">
 <head>
@@ -22,6 +21,7 @@
           <script type="text/javascript" src="js/angular-flippy.js"></script>
           <script type="text/javascript" src="js/loginsignup.js"></script>
           <script src="node_modules/angular-animate/angular-animate.js"></script>
+          
           <link rel="stylesheet" href="css/index.css">
 
 </head>
