@@ -106,7 +106,8 @@
 
 
     </div>
-    <button type="button"  data-toggle="modal" data-target="#dummy">Add New Deck</button>
+    <button type="button"  data-toggle="modal" data-target="#dummy" style="border:none; background-color: Transparent;" title="Click here to add a new deck">
+      <img src="img/web/adddeck.png" alt="add new deck" height="200" width="150"></button>
     
    
     <!-- Modal for display information-->

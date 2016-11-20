@@ -107,7 +107,9 @@
       </div>
 
      </div>
-    <button type="button"  data-toggle="modal" data-target="#addcard">Add New card</button>
+    <button type="button"  data-toggle="modal" data-target="#addcard" style="border:none; background-color: Transparent;" title="Click here to add a new card">
+      <img src="img/web/addcard.png" alt="add new deck" height="200" width="150"></button>
+
     <div ng-repeat="n in cardlist">
     </div>
     <!-- Modal for display add card information-->
