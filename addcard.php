@@ -74,12 +74,17 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
-                       <h2><?php echo $_POST['DName'] ?></h2>
+                       <h2><?php echo $_POST['DName'] ?>
+					    <form action="adddeck.php" method="POST" style="float: right;">	
+							<button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003; padding:0px;" title="Click here to close"><i class="fa fa-close"></i></button>
+						</form>
+						</h2>
+					
 
     <div ng-repeat="m in cardlist" style="display: inline-block;">
      <!-- Trigger the modal with an image -->
     
-     <img src={{m.CIPath}} class="crop"  data-toggle="modal" data-target="#{{m.CID}}">
+     <img src={{m.CIPath}} class="crop"  data-toggle="modal" data-target="#{{m.CID}}" style="border-radius:10px;">
 
 
     <!-- Modal for display information-->
@@ -152,7 +157,7 @@
           
           </div>
           <div class="modal-footer">
-           <button type="submit" class="btn btn-primary">Submit</button>
+           <button type="submit" class="btn btn-primary">Add</button>
      
       {{message}}
       </form>
