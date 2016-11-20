@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/button.css">
 </head>
 <body ng-app="app" ng-controller="addDeckCtrl">
 <div id="wrapper">
@@ -74,11 +75,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
-                       <h2><?php echo $_POST['DName'] ?>
-					    <form action="adddeck.php" method="POST" style="float: right;">	
-							<button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003; padding:0px;" title="Click here to close"><i class="fa fa-close"></i></button>
-						</form>
-						</h2>
+					    <form action="adddeck.php" method="POST" style="">	
+              <h1> </h1>
+							<button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003; float:right;" title="Click here to close"><i class="fa fa-close"></i></button>
+						<h2><?php echo $_POST['DName'] ?></h2></form>
+						
 					
 
     <div ng-repeat="m in cardlist" style="display: inline-block;">
