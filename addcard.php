@@ -1,14 +1,16 @@
 <?php
-  if(!isset($_POST['DID'])){
-    header("Location: main.php"); 
-  }else{
-    $did = $_POST['DID'];
-  }
+  session_start();
+      //Check whether user's already login or not?
+      if(!isset($_SESSION['UID'])){
+       header("Location: index.php"); 
+      }
+  $did = $_POST['DID'];
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="UTF-8">
   <title>Add Card</title>
   <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
   <script src="bower_components/ng-img-crop-full-extended/compile/minified/ng-img-crop.js"></script>
@@ -27,17 +29,52 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/sidebar.css">
   <script src="js/sidebar.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
   <link rel="stylesheet" href="css/style.css">
-  
-   <link rel="stylesheet" href="css/main.css">
 </head>
 <body ng-app="app" ng-controller="addDeckCtrl">
+<div id="wrapper">
+        <div class="overlay"></div>
+        <!-- Sidebar -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                   <img id="nohover" src="img/web/LOGOMINI.png" alt="" align="center">
+                </li>
+                <li>
+                    <a href="#">
+                    <i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
+                    </a>
+                </li>
+                <li>
+                    <a href="main.php">
+                    <i class="fa fa-fw fa-home"></i>  Home <span class="badge">2</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="php/logout.php">
+                    <i class="fa fa-key"></i> Logout
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /#sidebar-wrapper -->
 
-    <h2><?php echo $_POST['DName'] ?></h2>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+          <button type="button" class="hamburger is-closed animated fadeInLeft" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+          </button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                       <h2><?php echo $_POST['DName'] ?></h2>
 
     <div ng-repeat="m in cardlist" style="display: inline-block;">
      <!-- Trigger the modal with an image -->
@@ -84,32 +121,32 @@
             <h4 class="modal-title">Add Card</h4>
           </div>
           <div class="modal-body">
-	<!-- FORM -->
-	    <form name="userForm" ng-submit="submitForm()">
-	    <div class="form-group">
-	        <label>Card Name</label>
-	        <input type="text" name="cname" class="form-control" ng-model="cardName">
-	        <span ng-show="errorName">{{errorName}}</span>
-	    </div>
-	    <div class="form-group">
-	        <label>Card Description</label>
-	        <input type="text" name="cdes" class="form-control" ng-model="cardDes">
-	        <span ng-show="errorUserName">{{errorUserName}}</span>
-	    </div>
-	    <div class="form-group">
-	        <label>Category</label>
-	        <input type="text" name="ccate" class="form-control" ng-model="cardCate">
-	        <span ng-show="errorEmail">{{errorEmail}}</span>
-	    </div>
-	   
-	  {{codeStatus}}
-	  <div>Select an image file: <input type="file" id="fileInput" /></div>
+  <!-- FORM -->
+      <form name="userForm" ng-submit="submitForm()">
+      <div class="form-group">
+          <label>Card Name</label>
+          <input type="text" name="cname" class="form-control" ng-model="cardName">
+          <span ng-show="errorName">{{errorName}}</span>
+      </div>
+      <div class="form-group">
+          <label>Card Description</label>
+          <input type="text" name="cdes" class="form-control" ng-model="cardDes">
+          <span ng-show="errorUserName">{{errorUserName}}</span>
+      </div>
+      <div class="form-group">
+          <label>Category</label>
+          <input type="text" name="ccate" class="form-control" ng-model="cardCate">
+          <span ng-show="errorEmail">{{errorEmail}}</span>
+      </div>
+     
+    {{codeStatus}}
+    <div>Select an image file: <input type="file" id="fileInput" /></div>
          {{errorImg}}
-	  <div class="cropArea">
-	          <img-crop image="myImage" area-type="rectangle" aspect-ratio="0.7" result-image="myCroppedImage" result-image-size='{w: 340,h: 200}' init-max-area="true"></img-crop>
-	  </div>
-	  <div>Cropped Image:</div>
-	  <div><img ng-src="{{myCroppedImage}}" /></div>
+    <div class="cropArea">
+            <img-crop image="myImage" area-type="rectangle" aspect-ratio="0.7" result-image="myCroppedImage" result-image-size='{w: 340,h: 200}' init-max-area="true"></img-crop>
+    </div>
+    <div>Cropped Image:</div>
+    <div><img ng-src="{{myCroppedImage}}" /></div>
           
           </div>
           <div class="modal-footer">
@@ -123,6 +160,18 @@
 
       </div>
     </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
+
+    <script src="js/index.js"></script>
 
 </body>
 <script>

@@ -38,7 +38,7 @@
                    <img id="nohover" src="img/web/LOGOMINI.png" alt="" align="center">
                 </li>
                 <li>
-                    <a href="main.php">
+                    <a href="#">
                     <i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
                     </a>
                 </li>
