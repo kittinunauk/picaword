@@ -82,7 +82,7 @@
 						
 					
 
-    <div ng-repeat="m in cardlist" style="display: inline-block;">
+    <div ng-repeat="m in cardlist" style="display: inline-block;" id="deckprev">
      <!-- Trigger the modal with an image -->
     
      <img src={{m.CIPath}} class="crop"  data-toggle="modal" data-target="#{{m.CID}}" style="border-radius:10px;">
@@ -96,7 +96,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Deck Information</h4>
+              <h4 class="modal-title">Card Information</h4>
             </div>
             <div class="modal-body">
 
