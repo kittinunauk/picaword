@@ -71,11 +71,11 @@
                     <div class="col-sm-12 col-md-12 sidebar">
                        <!--Deck zone-->
   <div ng-controller="deckCtrl" >
-    <h2>My Decks</h2>
+    <h2>My Progress Decks</h2>
     
     <div ng-repeat="n in decks" id="deckprev">
      <!-- Trigger the modal with an image -->
-     <img src={{n.CIPath}} class="crop" width="150px" height="200px" data-toggle="modal" data-target="#{{n.DID}}">
+     <img src={{n.DCover}} class="crop" width="150px" height="200px" style="border-radius: 10px;" data-toggle="modal" data-target="#{{n.DID}}">
     <div>
     {{n.UProgress}} %
     </div>
@@ -92,9 +92,7 @@
           <div class="modal-body">
             <p color="#23454C"><b>Deck Name: </b> {{n.DName}} <br>
               <b> Description: </b> {{n.DDescription}} <br>
-      <b> No. of cards: </b>{{n.DMax}} <br>
        <b> Deck Creator: </b>{{n.DCreator}} <br>
-       Deck Rating: {{n.DRating}} 
             </p>
           </div>
           <div class="modal-footer">
@@ -121,7 +119,7 @@
     <div ng-repeat="m in decklists" id="deckprev">
      <!-- Trigger the modal with an image -->
     
-     <img src={{m.CIPath}} class="crop" width="150px" height="200px" data-toggle="modal" data-target="#{{m.DID}}">
+     <img src={{m.DCover}} class="crop" width="150px" height="200px" style="border-radius: 10px;" data-toggle="modal" data-target="#{{m.DID}}">
     <!-- Modal for display information-->
     <div id="{{m.DID}}" class="modal fade" role="dialog" ng-controller="deckCtrl">
       <div class="modal-dialog">
@@ -135,9 +133,7 @@
           <div class="modal-body">
             <p><b>Deck Name: </b> {{m.DName}} <br>
               <b> Description: </b> {{m.DDescription}} <br>
-      <b> No. of cards: </b>{{m.DMax}} <br>
        <b> Deck Creator: </b>{{m.DCreator}} <br>
-       Deck Rating: {{m.DRating}} 
             </p>
           </div>
           <div class="modal-footer">
@@ -201,7 +197,7 @@
     //Remove from my deck
     $scope.removeDeck = function(deckid){
       console.log(deckid);
-      $http.get('php/removedeck.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
+      $http.get('php/remove_deck_progress.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
             //$scope.decks = response.data.records;
             console.log("remove completed");
             $window.location.reload();
@@ -210,7 +206,7 @@
     //Add to my deck
     $scope.addDeck = function(deckid){
       console.log(deckid);
-      $http.get('php/add_deck.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
+      $http.get('php/add_deck_progress.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
             //$scope.decks = response.data.records;
             console.log("add completed");
             $window.location.reload();

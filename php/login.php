@@ -16,6 +16,7 @@
 
       // Storing user session value
       if($count) {
+		 session_start();
          $_SESSION['UID'] = $data->UID; 
          $_SESSION['UUser'] = $data->UUser;
          header("Location: ../main.php"); 
