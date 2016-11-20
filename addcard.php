@@ -151,7 +151,7 @@
     <div>Select an image file: <input type="file" id="fileInput" /></div>
          {{errorImg}}
     <div class="cropArea">
-            <img-crop image="myImage" area-type="rectangle" aspect-ratio="0.7" result-image="myCroppedImage" result-image-size='{w: 150,h: 250}' init-max-area="true"></img-crop>
+            <img-crop image="myImage" area-type="rectangle" aspect-ratio="0.7" result-image="myCroppedImage" result-image-size='{w: 150,h: 200}' init-max-area="true"></img-crop>
     </div>
     <div>Cropped Image:</div>
     <div><img ng-src="{{myCroppedImage}}" /></div>
