@@ -36,6 +36,14 @@
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/button.css">
+
+  <!--For using angular materials-->
+  <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+  <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+  <script src="node_modules/angular-aria/angular-aria.js"></script>
+  <script src="node_modules/angular-material/angular-material.js"></script>
+  <script src="node_modules/angular-messages/angular-messages.js"></script>
+
 </head>
 <body ng-app="app" ng-controller="addDeckCtrl">
 <div id="wrapper">
@@ -76,7 +84,11 @@
 	
 					    <form action="adddeck.php" method="POST" style="">	
               <h1> </h1>
-							<button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003; float:right;" title="Click here to close"><i class="fa fa-close"></i></button>
+					 <button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003; float:right;" title="Click here to close"><i class="fa fa-close"></i>
+                                          <md-tooltip md-visible="false" md-direction="top">
+                                          Go Back
+                                          </md-tooltip>
+                                          </button>
 						<h2><?php echo $_POST['DName'] ?></h2></form>
 					
 					
@@ -185,7 +197,7 @@
 
     var DID = <?php echo $did ?>;
 
-    angular.module('app', ['ngImgCrop']).controller('addDeckCtrl', function($scope,$http,$templateCache,$window) {
+    angular.module('app', ['ngImgCrop','ngMaterial']).controller('addDeckCtrl', function($scope,$http,$templateCache,$window) {
     
          $http.get('php/mydeckcard_retreive.php',{ params: { deckid: DID } }).then(function (response) {
          	$scope.cardlist = response.data.cardlistindeck;

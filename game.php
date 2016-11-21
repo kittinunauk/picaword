@@ -29,6 +29,13 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
 	
+	<!--For using angular materials-->
+	<script src="node_modules/angular-animate/angular-animate.min.js"></script>
+	<link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+	<script src="node_modules/angular-aria/angular-aria.js"></script>
+      	<script src="node_modules/angular-material/angular-material.js"></script>
+	<script src="node_modules/angular-messages/angular-messages.js"></script>
+
  	<link rel="stylesheet" href="css/button.css">
  	<link rel="stylesheet" href="css/style.css">
  	<link rel="stylesheet" href="css/game.css">
@@ -76,7 +83,11 @@
 		
 			<input type="text" ng-hide="true" value="{{userprogress}}" name = "fprogress" >
 			<input type="text" ng-hide="true" value="{{deckid}}" name = "fdeckid">
-			<button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003;" title="Click here to close"><i class="fa fa-close"></i></button>
+			<button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003;" title="Click here to close"><i class="fa fa-close"></i>
+			<md-tooltip md-visible="false" md-direction="top">
+            				Save and Quit
+          			</md-tooltip>
+			</button>
 		</form>
 		
 		<!-- CSS Boostrap Progress bar -->
@@ -122,10 +133,6 @@
 			<span class="glyphicon glyphicon-circle-arrow-right"></span></button>
 		<button class="button" id="left" type="button" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn"><span>Prev</span></button>
 		<button class="button" id="right" type="button" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"><span>Next</span></button>
-		
-<!-- 		<input type="button" value="Submit" ng-click="getVerdict()" ng-show="submitbtnvisible">
-		<input type="button" value="Prev" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn">
-		<input type="button" value="Next" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"> -->
 		{{result}}
 		</div>
 	
@@ -145,7 +152,7 @@
 	//Declare queue for storing cards that user answer incorrectly
 	var queue = [];
 	//Declare Angular application name myApp
-	var app = angular.module('picaword', ['angular-flippy']);
+	var app = angular.module('picaword', ['angular-flippy','ngMaterial']);
 
 	app.directive('ngEnter', function () {
     		return function (scope, element, attrs) {
