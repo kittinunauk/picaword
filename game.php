@@ -298,7 +298,7 @@
 		 	//Learning Mode
 		 	if(_mode===1){
 				//Last Card
-		 		if($scope.pid===$scope.maxcard&&queue.length===0){
+		 		if($scope.pid===$scope.maxcard||queue.length===0){
 		 			$scope.nextbtn = true;
 		 		} 
 		 		//Update Card information

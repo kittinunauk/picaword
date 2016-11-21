@@ -86,7 +86,7 @@
     <div ng-repeat="m in cardlist" style="display: inline-block;" id="deckprev">
      <!-- Trigger the modal with an image -->
     
-     <img src={{m.CIPath}} class="crop"  data-toggle="modal" data-target="#{{m.CID}}" style="border-radius:10px;">
+     <img src={{m.CIPath}} class="crop"  data-toggle="modal" data-target="#{{m.CID}}" style="border-radius:10px;height: 150px;width: 200px;">
 
 
     <!-- Modal for display information-->
@@ -152,7 +152,7 @@
     <div>Select an image file: <input type="file" id="fileInput" /></div>
          {{errorImg}}
     <div class="cropArea">
-            <img-crop image="myImage" area-type="rectangle" aspect-ratio="0.7" result-image="myCroppedImage" result-image-size='{w: 150,h: 200}' init-max-area="true"></img-crop>
+            <img-crop image="myImage" area-type="rectangle" aspect-ratio="0.7" result-image="myCroppedImage" result-image-size='{w: 200,h: 300}' init-max-area="true"></img-crop>
     </div>
     <div>Cropped Image:</div>
     <div><img ng-src="{{myCroppedImage}}" /></div>
