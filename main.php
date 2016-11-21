@@ -23,58 +23,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
   <link rel="stylesheet" href="css/style.css">
-
-  <style>#loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  bottom: 50%
-  right:50%;
-  z-index: 1;
-  width: 5px;
-  height: 5px;
-  border: 10px solid #00BFFF;
-  border-radius: 50%;
-  border-top: 10px solid white;
-  width: 150px;
-  height: 150px;
-  -webkit-animation: spin 1.5s linear infinite;
-  animation: spin 1.5s linear infinite;
-}
-
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Add animation to "page content" */
-.animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s
-}
-
-@-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 }
-  to { bottom:0px; opacity:1 }
-}
-
-@keyframes animatebottom {
-  from{ bottom:-100px; opacity:0 }
-  to{ bottom:0; opacity:1 }
-}
-
-#myDiv {
-  display: none;
-}
-</style>
+  <link rel="stylesheet" href="css/loading.css">
 
 </head>
 
@@ -99,12 +48,12 @@
                 </li>
                 <li>
                     <a href="#">
-                    <i class="fa fa-folder-open-o"></i>  Decks <span class="badge">2</span>
+                    <i class="fa fa-folder-open-o"></i>  Decks
                     </a>
                 </li>
                 <li>
                     <a href="adddeck.php">
-                    <i class="fa fa-plus-square"></i>  Add Deck <span class="badge">2</span>
+                    <i class="fa fa-plus-square"></i>  Add Deck
                     </a>
                 </li>
                 <li>

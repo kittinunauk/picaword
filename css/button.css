@@ -82,8 +82,8 @@
 }
 #normal.button:hover{
   color:black;
-  background-color:#white;
-  border: 3px solid black;
+  background-color:white;
+  border: 3px solid #C8D5B9;
 }
 #normal.button:hover span:after {
   opacity: 1;

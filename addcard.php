@@ -53,7 +53,7 @@
                 </li>
                 <li>
                     <a href="main.php">
-                    <i class="fa fa-fw fa-home"></i>  Home <span class="badge">2</span>
+                    <i class="fa fa-fw fa-home"></i>  Home
                     </a>
                 </li>
                 <li>
@@ -75,14 +75,22 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
+<<<<<<< HEAD
 					    <form action="adddeck.php" method="POST" >	
                                           <h1></h1>
 							<button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003; padding:0px;float: right;" title="Click here to close"><i class="fa fa-close"></i></button>
 						</form>
 						<h2><?php echo $_POST['DName'] ?></h2>
+=======
+					    <form action="adddeck.php" method="POST" style="">	
+              <h1> </h1>
+							<button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003; float:right;" title="Click here to close"><i class="fa fa-close"></i></button>
+						<h2><?php echo $_POST['DName'] ?></h2></form>
+						
+>>>>>>> master
 					
 
-    <div ng-repeat="m in cardlist" style="display: inline-block;">
+    <div ng-repeat="m in cardlist" style="display: inline-block;" id="deckprev">
      <!-- Trigger the modal with an image -->
     
      <img src={{m.CIPath}} class="crop"  data-toggle="modal" data-target="#{{m.CID}}" style="border-radius:10px;">
@@ -96,7 +104,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Deck Information</h4>
+              <h4 class="modal-title">Card Information</h4>
             </div>
             <div class="modal-body">
 

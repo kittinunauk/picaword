@@ -44,7 +44,7 @@
                 </li>
                 <li>
                     <a href="main.php">
-                    <i class="fa fa-fw fa-home"></i>  Home <span class="badge">2</span>
+                    <i class="fa fa-fw fa-home"></i>  Home
                     </a>
                 </li>
                 <li>
@@ -67,7 +67,7 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                        <h2>My Created Deck</h2>
-    <div ng-repeat="n in mydeck" style="display: inline-block;">
+    <div ng-repeat="n in mydeck" style="display: inline-block;" id="deckprev">
 
   <img src={{n.DCover}} width="150px" height="250px" data-toggle="modal" data-target ="#{{n.DID}}" style="border-radius: 10px;">
       <!-- <button type="button"  data-toggle="modal" data-target="#addcard">Add New card</button> -->
