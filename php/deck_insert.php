@@ -5,7 +5,7 @@
 	$dcreator = $_SESSION['UUser'];
 	$dname = $_POST['dname'];
 	$ddes = $_POST['ddes'];
-	$dcover = "img/mascot/cardy-so.png";
+	$dcover = "img/mascot/cardy-new.png";
 	try {
 	            $statement = $dbConnection->prepare("INSERT INTO Deck(DName,DDescription,DCreator,DCover) VALUES (:dname,:ddes,:dcreator,:dcover)");
 	            $statement->bindParam("dcreator", $dcreator,PDO::PARAM_STR) ;

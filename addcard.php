@@ -75,11 +75,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
+	
 					    <form action="adddeck.php" method="POST" style="">	
               <h1> </h1>
 							<button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003; float:right;" title="Click here to close"><i class="fa fa-close"></i></button>
 						<h2><?php echo $_POST['DName'] ?></h2></form>
-						
+					
 					
 
     <div ng-repeat="m in cardlist" style="display: inline-block;" id="deckprev">
@@ -151,7 +152,7 @@
     <div>Select an image file: <input type="file" id="fileInput" /></div>
          {{errorImg}}
     <div class="cropArea">
-            <img-crop image="myImage" area-type="rectangle" aspect-ratio="0.7" result-image="myCroppedImage" result-image-size='{w: 150,h: 250}' init-max-area="true"></img-crop>
+            <img-crop image="myImage" area-type="rectangle" aspect-ratio="0.7" result-image="myCroppedImage" result-image-size='{w: 150,h: 200}' init-max-area="true"></img-crop>
     </div>
     <div>Cropped Image:</div>
     <div><img ng-src="{{myCroppedImage}}" /></div>
