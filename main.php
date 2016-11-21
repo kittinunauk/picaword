@@ -78,11 +78,14 @@
     <h2>My Progress Decks</h2>
     
     <div ng-repeat="n in decks" id="deckprev">
-     <!-- Trigger the modal with an image -->
-     <img src={{n.DCover}} class="crop" id="cardshow" data-toggle="modal" data-target="#{{n.DID}}">
-    <div>
-    {{n.UProgress}} %
-    </div>
+		<!-- Trigger the modal with an image -->
+		<img src={{n.DCover}} class="crop" id="cardshow" data-toggle="modal" data-target="#{{n.DID}}">
+		
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" aria-value="{{n.UProgress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{n.UProgress}}%">				
+			</div>
+		</div>
+		
     <!-- Modal for display information-->
     <div id="{{n.DID}}" class="modal fade" role="dialog" ng-controller="deckCtrl">
       <div class="modal-dialog">
