@@ -41,10 +41,8 @@
                 <li class="sidebar-brand">
                     <img id="nohover" src="img/web/LOGOMINI.png" alt="" align="center">
                 </li>
-                <li>
-                    <a href="#">
-                    <i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
-                    </a>
+                <li style="color: white;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
                 </li>
                 <li>
                     <a href="#">

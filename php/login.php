@@ -12,17 +12,20 @@
       $statement->execute();
       $count = $statement->rowCount();
       $data = $statement->fetch(PDO::FETCH_OBJ);
-      var_dump($data);
+      //var_dump($data);
 
       // Storing user session value
       if($count) {
 		 session_start();
          $_SESSION['UID'] = $data->UID; 
          $_SESSION['UUser'] = $data->UUser;
+         if(isset($_SESSION['error'])) {
+            unset($_SESSION['error']);
+         }
          header("Location: ../main.php"); 
       }else {
-         echo "Invalid!";
-         echo $count;
+         $_SESSION['error'] = "<script> alert('Invalid email or password, try again!'); </script>";
+         header("Location: ../index.php");
       } 
          
    }catch (PDOException $e) {

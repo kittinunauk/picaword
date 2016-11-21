@@ -29,6 +29,13 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
 	
+	<!--For using angular materials-->
+	<script src="node_modules/angular-animate/angular-animate.min.js"></script>
+	<link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+	<script src="node_modules/angular-aria/angular-aria.js"></script>
+      	<script src="node_modules/angular-material/angular-material.js"></script>
+	<script src="node_modules/angular-messages/angular-messages.js"></script>
+
  	<link rel="stylesheet" href="css/button.css">
  	<link rel="stylesheet" href="css/style.css">
  	<link rel="stylesheet" href="css/game.css">
@@ -44,10 +51,8 @@
                 <li class="sidebar-brand">
                    <img id="nohover" src="img/web/LOGOMINI.png" alt="" align="center">
                 </li>
-                <li>
-                    <a href="main.php">
-                    <i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
-                    </a>
+                <li style="color: white;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
                 </li>
                 <li>
                     <a href="main.php">
@@ -78,7 +83,11 @@
 		
 			<input type="text" ng-hide="true" value="{{userprogress}}" name = "fprogress" >
 			<input type="text" ng-hide="true" value="{{deckid}}" name = "fdeckid">
-			<button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003;" title="Click here to close"><i class="fa fa-close"></i></button>
+			<button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003;" title="Click here to close"><i class="fa fa-close"></i>
+			<md-tooltip md-visible="false" md-direction="top">
+            				Save and Quit
+          			</md-tooltip>
+			</button>
 		</form>
 		
 		<!-- CSS Boostrap Progress bar -->
@@ -103,8 +112,9 @@
 		</div>
 		</div>
 		</div>
-	    <div style="padding: 3%"> 
-		<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" style="z-index: 5;">
+	    <div style="text-align: center"> <p style="font-size:5%;"><br></p>
+	    	<div style="display: inline-block;">
+				<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" style="z-index: 5;">
 	                    	<flippy-front>
 
 	                    		<img src="{{cards[pid-1].CIPath}}" width="100px" height="200px">
@@ -116,18 +126,16 @@
 					<b>Description: </b> {{description}}
 	                    		</p>
 	                   	 </flippy-back>
-                	</flippy>
-                	</div>
-		<div style="position: relative; margin: 0px 0px 0px 0px; text-align:left;">
+            	</flippy>
+        	</div>
+        </div>
+
+		<div style="position: relative; margin: 0px 0px 0px 0px; text-align:center;">
 		<input ng-type="text" ng-model="userans" ng-disabled="inputtext" ng-show="inputtextvisible" ng-enter="getVerdict()"> 
 		<button class="button" id="normal" type="button" ng-click="getVerdict()" ng-show="submitbtnvisible" style="width: 40px;padding-top: 4px;" title="Click here to submit">
 			<span class="glyphicon glyphicon-circle-arrow-right"></span></button>
 		<button class="button" id="left" type="button" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn"><span>Prev</span></button>
 		<button class="button" id="right" type="button" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"><span>Next</span></button>
-		
-<!-- 		<input type="button" value="Submit" ng-click="getVerdict()" ng-show="submitbtnvisible">
-		<input type="button" value="Prev" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn">
-		<input type="button" value="Next" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"> -->
 		{{result}}
 		</div>
 	
@@ -137,6 +145,8 @@
 <img src="{{verdictimg}}" width="200px" height="200px">
 
  {{verdict}}</div>
+</div>
+</div>
 </body>
 
 <script>
@@ -147,7 +157,7 @@
 	//Declare queue for storing cards that user answer incorrectly
 	var queue = [];
 	//Declare Angular application name myApp
-	var app = angular.module('picaword', ['angular-flippy']);
+	var app = angular.module('picaword', ['angular-flippy','ngMaterial']);
 
 	app.directive('ngEnter', function () {
     		return function (scope, element, attrs) {
@@ -177,9 +187,11 @@
 
 		 /*Mode-based Initialization*/
 		 if(_mode===1){
+
 		 	//Card & Progress Bar in mode 1
 		 	$scope.cardprogressbar  = false;
 		 	$scope.scoreprogressbar  = true;
+
 		 	//Visibility for submit &next
 		 	$scope.nextbtnvisible = true; // Learning Mode
 		 	$scope.prevbtnvisible = true;
@@ -187,6 +199,8 @@
 		 	$scope.nextbtn = false;
 		 	$scope.wordDisplay = true;
 		 	$scope.savebtn = false;
+
+
 		 }else if(_mode===2){
 		 	//Card & Progress Bar in mode 2
 		 	$scope.cardprogressbar  = true;
@@ -213,6 +227,10 @@
 			$scope.maxcard = Object.keys($scope.cards).length;
 		    	$scope.currentword = $scope.cards[0].CWord;
 		    	console.log($scope.cards);
+		    	console.log("Length = " + $scope.cards.length);
+		    	if($scope.cards.length===1){
+		 		$scope.nextbtn = true;
+		 	}
 			//Enqueue all cards into queue
 		    	for($i  = 1; $i<=$scope.maxcard ;$i++){
 		    		queue.push($i);
@@ -245,26 +263,25 @@
 		 		if(queue.length>0) queue.shift();
 		 		$scope.userprogress  = ($scope.userscore/$scope.maxcard)*100;
 		 		console.log("User Progression(%): " + $scope.userprogress);
-
 		 		$scope.verdictimg ="img/mascot/cardy-yes.png";
 
 		 	}else{
 		 		console.log("Verdict: Wrong Answer");
 		 		$scope.verdict = "Wrong Answer";
 		 		//Enqueue if answer was wrong
-
 		 		queue.push(queue.shift());
 		 		console.log("Current Queue: " + queue);
+		 		$scope.userans = $scope.correctans
 		 		$scope.verdictimg ="img/mascot/cardy-no.png";
 		 	}
 
 		 	// In case it's  a last card in deck
 		 	if(queue.length===0){
 		 		console.log("Game Ended");
-		 		$scope.result += "You've got " +  $scope.userscore + " out of " + $scope.maxcard + "!";
+		 		$scope.result += "You've finished this deck. (Got 100% progress)";
 				$scope.submitbtnvisible = false;
 				$scope.inputtextvisible = false;
-				$scope.pid = queue[0];
+				//$scope.pid = queue[0];
 		 	// Otherwise
 		 	}else{
 		 		$scope.submitbtnvisible = false;
@@ -278,7 +295,7 @@
 		 	
 		 	if(_mode===1){
 		 		$scope.prevbtn = false;
-		 		$scope.pid++;
+		 		$scope.pid++;		 		
 		 	 }else{
 			 	$scope.verdict = "";
 			 	$scope.pid = queue[0];
@@ -291,10 +308,10 @@
 		 	//Learning Mode
 		 	if(_mode===1){
 				//Last Card
-		 		if($scope.pid===$scope.maxcard){
+		 		if($scope.pid===$scope.maxcard||queue.length===0){
 		 			$scope.nextbtn = true;
-		 		}
-		 		 //Update Card information
+		 		} 
+		 		//Update Card information
 	 			$scope.description = $scope.cards[$scope.pid-1].CDescription;
 	 			$scope.currentword = $scope.cards[$scope.pid-1].CWord;
 		 	}else{

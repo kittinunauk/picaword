@@ -36,6 +36,14 @@
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/button.css">
+
+  <!--For using angular materials-->
+  <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+  <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+  <script src="node_modules/angular-aria/angular-aria.js"></script>
+  <script src="node_modules/angular-material/angular-material.js"></script>
+  <script src="node_modules/angular-messages/angular-messages.js"></script>
+
 </head>
 <body ng-app="app" ng-controller="addDeckCtrl">
 <div id="wrapper">
@@ -46,10 +54,8 @@
                 <li class="sidebar-brand">
                    <img id="nohover" src="img/web/LOGOMINI.png" alt="" align="center">
                 </li>
-                <li>
-                    <a href="#">
-                    <i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
-                    </a>
+                <li style="color: white;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
                 </li>
                 <li>
                     <a href="main.php">
@@ -75,17 +81,22 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
+	
 					    <form action="adddeck.php" method="POST" style="">	
               <h1> </h1>
-							<button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003; float:right;" title="Click here to close"><i class="fa fa-close"></i></button>
+					 <button class="button" id="normal" type="submit" style="width: 40px; height: 40px; background-color:#CE0003; float:right;" title="Click here to close"><i class="fa fa-close"></i>
+                                          <md-tooltip md-visible="false" md-direction="top">
+                                          Go Back
+                                          </md-tooltip>
+                                          </button>
 						<h2><?php echo $_POST['DName'] ?></h2></form>
-						
+					
 					
 
     <div ng-repeat="m in cardlist" style="display: inline-block;" id="deckprev">
      <!-- Trigger the modal with an image -->
     
-     <img src={{m.CIPath}} class="crop"  data-toggle="modal" data-target="#{{m.CID}}" style="border-radius:10px;">
+     <img src={{m.CIPath}} class="crop"  data-toggle="modal" data-target="#{{m.CID}}" style="border-radius:10px;height: 150px;width: 200px;">
 
 
     <!-- Modal for display information-->
@@ -151,7 +162,7 @@
     <div>Select an image file: <input type="file" id="fileInput" /></div>
          {{errorImg}}
     <div class="cropArea">
-            <img-crop image="myImage" area-type="rectangle" aspect-ratio="0.7" result-image="myCroppedImage" result-image-size='{w: 150,h: 250}' init-max-area="true"></img-crop>
+            <img-crop image="myImage" area-type="rectangle" aspect-ratio="0.7" result-image="myCroppedImage" result-image-size='{w: 200,h: 300}' init-max-area="true"></img-crop>
     </div>
     <div>Cropped Image:</div>
     <div><img ng-src="{{myCroppedImage}}" /></div>
@@ -186,7 +197,7 @@
 
     var DID = <?php echo $did ?>;
 
-    angular.module('app', ['ngImgCrop']).controller('addDeckCtrl', function($scope,$http,$templateCache,$window) {
+    angular.module('app', ['ngImgCrop','ngMaterial']).controller('addDeckCtrl', function($scope,$http,$templateCache,$window) {
     
          $http.get('php/mydeckcard_retreive.php',{ params: { deckid: DID } }).then(function (response) {
          	$scope.cardlist = response.data.cardlistindeck;
