@@ -112,8 +112,9 @@
 		</div>
 		</div>
 		</div>
-	    <div style="padding: 3%"> 
-		<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" style="z-index: 5;">
+	    <div style="text-align: center"> <p style="font-size:5%;"><br></p>
+	    	<div style="display: inline-block;">
+				<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" style="z-index: 5;">
 	                    	<flippy-front>
 
 	                    		<img src="{{cards[pid-1].CIPath}}" width="100px" height="200px">
@@ -125,9 +126,11 @@
 					<b>Description: </b> {{description}}
 	                    		</p>
 	                   	 </flippy-back>
-                	</flippy>
-                	</div>
-		<div style="position: relative; margin: 0px 0px 0px 0px; text-align:left;">
+            	</flippy>
+        	</div>
+        </div>
+
+		<div style="position: relative; margin: 0px 0px 0px 0px; text-align:center;">
 		<input ng-type="text" ng-model="userans" ng-disabled="inputtext" ng-show="inputtextvisible" ng-enter="getVerdict()"> 
 		<button class="button" id="normal" type="button" ng-click="getVerdict()" ng-show="submitbtnvisible" style="width: 40px;padding-top: 4px;" title="Click here to submit">
 			<span class="glyphicon glyphicon-circle-arrow-right"></span></button>
@@ -142,6 +145,8 @@
 <img src="{{verdictimg}}" width="200px" height="200px">
 
  {{verdict}}</div>
+</div>
+</div>
 </body>
 
 <script>
