@@ -40,6 +40,37 @@
  	<link rel="stylesheet" href="css/style.css">
  	<link rel="stylesheet" href="css/game.css">
 
+ 	<style>
+.tooltiptext {
+    visibility: visible;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+
+.tooltiptext:hover {
+    visibility: visible;
+}
+</style>
 </head>
 <body>
 
@@ -143,8 +174,8 @@
 
 <div class="col-md-2 col-sm-3" style="height: 100%;"> 
 <img src="{{verdictimg}}" width="200px" height="200px">
-
- {{verdict}}</div>
+<span class="tooltiptext">{{verdict}}</span>
+ </div>
 </div>
 </div>
 </body>
@@ -178,7 +209,7 @@
 		 //Pass _deckid to use in wordCtrl 
 		 $scope.deckid = _deckid;
 		 //Verdict
-		 $scope.verdict = "";	    
+		 $scope.verdict = "Let's guess";	    
 		 $scope.verdictimg ="img/mascot/cardy-so.png";
 		 //User Score
 		 $scope.userscore = 0;
@@ -297,7 +328,7 @@
 		 		$scope.prevbtn = false;
 		 		$scope.pid++;		 		
 		 	 }else{
-			 	$scope.verdict = "";
+			 	$scope.verdict = "Guess what!";
 			 	$scope.pid = queue[0];
 			 	$scope.submitbtnvisible = true;
 			 	$scope.nextbtnvisible = false;
