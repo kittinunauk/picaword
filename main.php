@@ -42,9 +42,7 @@
                     <img id="nohover" src="img/web/LOGOMINI.png" alt="" align="center">
                 </li>
                 <li style="color: white;">
-                    <!-- <a href="#"> -->
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
-                    <!-- </a> -->
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
                 </li>
                 <li>
                     <a href="#">
