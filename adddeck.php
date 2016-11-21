@@ -90,7 +90,9 @@
 
               <input type="text" value="{{n.DName}}" name="DName" ng-hide="true"/>
               <input type="text" value="{{n.DID}}" name="DID" ng-hide="true"/>
+
               <button type="submit" class="btn btn-warning"> Add Card</button>
+              <button type="button" class="btn btn-warning" ng-click="deleteDeck(n.DID)">Delete Deck</button>
               <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
              </form>
              
@@ -152,7 +154,7 @@
 </body>
 <script>
 
-    angular.module('app', ['ngImgCrop']).controller('addDeckCtrl', function($scope,$http,$templateCache) {
+    angular.module('app', ['ngImgCrop']).controller('addDeckCtrl', function($scope,$http,$templateCache,$window) {
       
 
          $http.get('php/mydeck_retreive.php').then(function (response) {
@@ -187,6 +189,22 @@
               }
             });
         };
+
+        $scope.deleteDeck = function(deckid){
+                  console.log(deckid);
+                   $scope.deck = {};
+                   $scope.deck.deckid = deckid;
+                   $http({
+                    method  : 'POST',
+                    url     : 'php/deck_delete.php',
+                    data    : $scope.deck, // deckid to be deleted 
+                    headers : {'Content-Type': 'application/x-www-form-urlencoded'} 
+                   })
+                  .success(function(data) {
+                      console.log("Delete Success");
+                      $window.location.reload();
+                  });
+        }
 
         $scope.myImage='';
         $scope.myCroppedImage='';
