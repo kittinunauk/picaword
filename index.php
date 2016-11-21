@@ -59,16 +59,16 @@
 
       <div class="col-xs-12 signupform" ng-show="signupform">
           <form action="php/signup.php" method="POST">
-            <input type="text" name="name" id="name" class="signup-input-txt" placeholder="Name"required> <br>
+              
+            <input type="text" name="name" id="name" class="signup-input-txt" placeholder="Name" ng-model="username" ng-change="checkUser()" required> <br>
             <input type="email" name="emailsignup" id="emaillsignup" class="signup-input-txt" placeholder="E-Mail" required> <br>
-            <md-input-container>
             <input type="password" name="passsignup" id="passsignup" class="signup-input-txt" placeholder="Password" ng-model="passsignup" ng-change="checkPass()" required> 
-             <md-tooltip md-visible="false" md-direction="right">
-              {{errMsg}}
-            </md-tooltip></input><br>
-            </md-input-container>
+             <br>         
             <input type="password" name="cpasssignup" id="cpasssignup" class="signup-input-txt" placeholder="Confirmed Password" ng-model="cpasssignup" ng-change="checkPass()" required> <br>
-            <br><button type="submit" id="signupbtn"> Submit </button>
+            <br>
+            {{errMsgPass}}
+            <button type="submit" id="signupbtn" ng-show="submitbtn"> Submit 
+           </button>
            <br><a href="#" ng-click="getLoginForm()">Login</a>
            
           </form>
@@ -89,8 +89,12 @@
         $scope.loginform = false;
         $scope.signupform = false;
         $scope.signupbtn = true;
+        $scope.submitbtn = false;
 
-        $scope.errMsg = "";
+        $scope.errMsgUser = "";
+        $scope.errMsgPass = "";
+        $scope.username = "";
+
 
         $scope.getLoginForm = function(){
           $scope.loginbtn = false;
@@ -108,10 +112,15 @@
 
         $scope.checkPass = function(){
           if($scope.passsignup!=$scope.cpasssignup){
-            $scope.errMsg = "Password Not Match";
+            console.log("Password doesn't match");
+            $scope.errMsgPass = "Password doesn't match";
+             $scope.submitbtn = false;
+          }else{
+             $scope.errMsgPass = "";
+              $scope.submitbtn = true;
           }
-      
-        }
+        };
+
   });
 </script>
 </html>
