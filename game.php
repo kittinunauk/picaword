@@ -177,9 +177,11 @@
 
 		 /*Mode-based Initialization*/
 		 if(_mode===1){
+
 		 	//Card & Progress Bar in mode 1
 		 	$scope.cardprogressbar  = false;
 		 	$scope.scoreprogressbar  = true;
+
 		 	//Visibility for submit &next
 		 	$scope.nextbtnvisible = true; // Learning Mode
 		 	$scope.prevbtnvisible = true;
@@ -187,6 +189,8 @@
 		 	$scope.nextbtn = false;
 		 	$scope.wordDisplay = true;
 		 	$scope.savebtn = false;
+
+
 		 }else if(_mode===2){
 		 	//Card & Progress Bar in mode 2
 		 	$scope.cardprogressbar  = true;
@@ -213,6 +217,10 @@
 			$scope.maxcard = Object.keys($scope.cards).length;
 		    	$scope.currentword = $scope.cards[0].CWord;
 		    	console.log($scope.cards);
+		    	console.log("Length = " + $scope.cards.length);
+		    	if($scope.cards.length===1){
+		 		$scope.nextbtn = true;
+		 	}
 			//Enqueue all cards into queue
 		    	for($i  = 1; $i<=$scope.maxcard ;$i++){
 		    		queue.push($i);
@@ -245,26 +253,25 @@
 		 		if(queue.length>0) queue.shift();
 		 		$scope.userprogress  = ($scope.userscore/$scope.maxcard)*100;
 		 		console.log("User Progression(%): " + $scope.userprogress);
-
 		 		$scope.verdictimg ="img/mascot/cardy-yes.png";
 
 		 	}else{
 		 		console.log("Verdict: Wrong Answer");
 		 		$scope.verdict = "Wrong Answer";
 		 		//Enqueue if answer was wrong
-
 		 		queue.push(queue.shift());
 		 		console.log("Current Queue: " + queue);
+		 		$scope.userans = $scope.correctans
 		 		$scope.verdictimg ="img/mascot/cardy-no.png";
 		 	}
 
 		 	// In case it's  a last card in deck
 		 	if(queue.length===0){
 		 		console.log("Game Ended");
-		 		$scope.result += "You've got " +  $scope.userscore + " out of " + $scope.maxcard + "!";
+		 		$scope.result += "You've finished this deck. (Got 100% progress)";
 				$scope.submitbtnvisible = false;
 				$scope.inputtextvisible = false;
-				$scope.pid = queue[0];
+				//$scope.pid = queue[0];
 		 	// Otherwise
 		 	}else{
 		 		$scope.submitbtnvisible = false;
@@ -278,7 +285,7 @@
 		 	
 		 	if(_mode===1){
 		 		$scope.prevbtn = false;
-		 		$scope.pid++;
+		 		$scope.pid++;		 		
 		 	 }else{
 			 	$scope.verdict = "";
 			 	$scope.pid = queue[0];
@@ -291,10 +298,10 @@
 		 	//Learning Mode
 		 	if(_mode===1){
 				//Last Card
-		 		if($scope.pid===$scope.maxcard){
+		 		if($scope.pid===$scope.maxcard&&queue.length===0){
 		 			$scope.nextbtn = true;
-		 		}
-		 		 //Update Card information
+		 		} 
+		 		//Update Card information
 	 			$scope.description = $scope.cards[$scope.pid-1].CDescription;
 	 			$scope.currentword = $scope.cards[$scope.pid-1].CWord;
 		 	}else{
