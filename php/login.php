@@ -19,12 +19,13 @@
 		 session_start();
          $_SESSION['UID'] = $data->UID; 
          $_SESSION['UUser'] = $data->UUser;
+         if(isset($_SESSION['error'])) {
+            unset($_SESSION['error']);
+         }
          header("Location: ../main.php"); 
       }else {
-         echo "<script>";
-         echo "alert('Invalid username or password, try again!');";
-         echo "</script>";
-         echo "<a href='../index.php'>Click here to go login page</a>";
+         $_SESSION['error'] = "<script> alert('Invalid email or password, try again!'); </script>";
+         header("Location: ../index.php");
       } 
          
    }catch (PDOException $e) {

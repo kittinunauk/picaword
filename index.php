@@ -5,6 +5,9 @@
      if(isset($_SESSION['UID'])){
        header("Location: main.php"); 
      }
+     if(isset($_SESSION['error'])) {
+          echo $_SESSION['error'];
+     }
 ?>
 <!DOCTYPE html>
 <html ng-app="picaword">
@@ -60,8 +63,8 @@
       <div class="col-xs-12 signupform" ng-show="signupform">
           <form action="php/signup.php" method="POST">
               
-            <input type="text" name="name" id="name" class="signup-input-txt" placeholder="Name" ng-model="username" ng-change="checkUser()" required> <br>
-            <input type="email" name="emailsignup" id="emaillsignup" class="signup-input-txt" placeholder="E-Mail" required> <br>
+            <input type="text" name="name" id="name" class="signup-input-txt" placeholder="Name" required> <br>
+            <input type="email" name="emailsignup" id="emaillsignup" class="signup-input-txt" placeholder="E-Mail"  ng-model="userEmail"  ng-change="checkEmail()" required> <br>
             <input type="password" name="passsignup" id="passsignup" class="signup-input-txt" placeholder="Password" ng-model="passsignup" ng-change="checkPass()" required> 
              <br>         
             <input type="password" name="cpasssignup" id="cpasssignup" class="signup-input-txt" placeholder="Confirmed Password" ng-model="cpasssignup" ng-change="checkPass()" required> <br>
@@ -93,7 +96,7 @@
 
         $scope.errMsgUser = "";
         $scope.errMsgPass = "";
-        $scope.username = "";
+        $scope.userEmail = "";
 
 
         $scope.getLoginForm = function(){
@@ -119,6 +122,21 @@
              $scope.errMsgPass = "";
               $scope.submitbtn = true;
           }
+        };
+
+        $scope.checkEmail = function(){
+          console.log($scope.userEmail);
+          $http.get('php/check_user.php', { params: { user: $scope.userEmail } }).then(function (response) {
+            $scope.userID = response.data.records;
+            console.log($scope.userID);
+            if($scope.userID.length>=1){
+              $scope.submitbtn = false;
+            }else{
+              $scope.submitbtn = true;
+            }
+          });
+
+
         };
 
   });
