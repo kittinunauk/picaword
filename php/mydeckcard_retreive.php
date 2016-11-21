@@ -1,5 +1,4 @@
 <?php
-	//session_start();
 	require("config.php");
 	$did = $_GET['deckid'];
 	$pdo = $dbConnection;

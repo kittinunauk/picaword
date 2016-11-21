@@ -10,28 +10,28 @@
 <head>
   <meta charset="UTF-8">
   <!-- http://jsfiddle.net/AhakQ/13/ -->
-  <title>Deck List</title>
-  <!-- Include AngularJS Framework -->
+  <title>Main Page</title>
+  <!-- Include Framework & Library -->
   <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
-  <!-- Include Bootstrap Framework -->
   <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/sidebar.css">
   <script src="js/sidebar.js"></script>
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
   <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
-
   <link rel="stylesheet" href="css/style.css">
-  
+  <link rel="stylesheet" href="css/loading.css">
+
 </head>
 
-<body>
+<body onload="myFunction()">
+
+  <div id="loader"></div>
+
+  <div style="display:none;" id="myDiv" class="animate-bottom">
       <div id="wrapper">
         <div class="overlay"></div>
     
@@ -41,14 +41,17 @@
                 <li class="sidebar-brand">
                     <img id="nohover" src="img/web/LOGOMINI.png" alt="" align="center">
                 </li>
-                <li>
-                    <a href="#">
-                    <i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
-                    </a>
+                <li style="color: white;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i><?php echo " User: <b>".$_SESSION['UUser']."</b>!";?>
                 </li>
                 <li>
                     <a href="#">
-                    <i class="fa fa-folder-open-o"></i>  Decks <span class="badge">2</span>
+                    <i class="fa fa-folder-open-o"></i>  Decks
+                    </a>
+                </li>
+                <li>
+                    <a href="adddeck.php">
+                    <i class="fa fa-plus-square"></i>  Add Deck
                     </a>
                 </li>
                 <li>
@@ -72,11 +75,11 @@
                     <div class="col-sm-12 col-md-12 sidebar">
                        <!--Deck zone-->
   <div ng-controller="deckCtrl" >
-    <h2>My Decks</h2>
+    <h2>My Progress Decks</h2>
     
     <div ng-repeat="n in decks" id="deckprev">
      <!-- Trigger the modal with an image -->
-     <img src={{n.CIPath}} class="crop" width="150px" height="200px" data-toggle="modal" data-target="#{{n.DID}}">
+     <img src={{n.DCover}} class="crop" width="150px" height="200px" style="border-radius: 10px;" data-toggle="modal" data-target="#{{n.DID}}">
     <div>
     {{n.UProgress}} %
     </div>
@@ -93,9 +96,7 @@
           <div class="modal-body">
             <p color="#23454C"><b>Deck Name: </b> {{n.DName}} <br>
               <b> Description: </b> {{n.DDescription}} <br>
-      <b> No. of cards: </b>{{n.DMax}} <br>
        <b> Deck Creator: </b>{{n.DCreator}} <br>
-       Deck Rating: {{n.DRating}} 
             </p>
           </div>
           <div class="modal-footer">
@@ -122,7 +123,7 @@
     <div ng-repeat="m in decklists" id="deckprev">
      <!-- Trigger the modal with an image -->
     
-     <img src={{m.CIPath}} class="crop" width="150px" height="200px" data-toggle="modal" data-target="#{{m.DID}}">
+     <img src={{m.DCover}} class="crop" width="150px" height="200px" style="border-radius: 10px;" data-toggle="modal" data-target="#{{m.DID}}">
     <!-- Modal for display information-->
     <div id="{{m.DID}}" class="modal fade" role="dialog" ng-controller="deckCtrl">
       <div class="modal-dialog">
@@ -136,9 +137,7 @@
           <div class="modal-body">
             <p><b>Deck Name: </b> {{m.DName}} <br>
               <b> Description: </b> {{m.DDescription}} <br>
-      <b> No. of cards: </b>{{m.DMax}} <br>
        <b> Deck Creator: </b>{{m.DCreator}} <br>
-       Deck Rating: {{m.DRating}} 
             </p>
           </div>
           <div class="modal-footer">
@@ -166,6 +165,8 @@
 
     </div>
     <!-- /#wrapper -->
+</div>
+
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'></script>
 
@@ -173,6 +174,16 @@
 
 </body>
 <script>
+var myVar;
+
+function myFunction() {
+    myVar = setTimeout(showPage, 30);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("myDiv").style.display = "block";
+}
   //Declare Angular application name decklist
   var uid = <?php echo $_SESSION['UID']; ?>;
   var app = angular.module('decklist', []);
@@ -202,7 +213,7 @@
     //Remove from my deck
     $scope.removeDeck = function(deckid){
       console.log(deckid);
-      $http.get('php/removedeck.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
+      $http.get('php/remove_deck_progress.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
             //$scope.decks = response.data.records;
             console.log("remove completed");
             $window.location.reload();
@@ -211,7 +222,7 @@
     //Add to my deck
     $scope.addDeck = function(deckid){
       console.log(deckid);
-      $http.get('php/add_deck.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
+      $http.get('php/add_deck_progress.php',{ params: { deckid: deckid ,uid: uid} }).then(function (response) {
             //$scope.decks = response.data.records;
             console.log("add completed");
             $window.location.reload();

@@ -5,8 +5,11 @@
      if(isset($_SESSION['UID'])){
        header("Location: main.php"); 
      }
+     if(isset($_SESSION['error'])) {
+          echo $_SESSION['error'];
+          unset($_SESSION['error']);
+     }
 ?>
-
 <!DOCTYPE html>
 <html ng-app="picaword">
 <head>
@@ -24,6 +27,12 @@
           <script src="node_modules/angular-animate/angular-animate.js"></script>
           <link rel="stylesheet" href="css/index.css">
 
+
+          <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+          <script src="node_modules/angular-aria/angular-aria.js"></script>
+          <script src="node_modules/angular-material/angular-material.js"></script>
+          <script src="node_modules/angular-messages/angular-messages.js"></script>
+
 </head>
 <body style="background-color: #F9F6D4;" >
 <div ng-controller="indexCtrl">
@@ -34,13 +43,15 @@
    </header>
    <section>
      <div id = "login" class="col-xs-12">
-        <button ng-show="loginbtn" ng-click="getLoginForm()" >LOGIN</button>
+         
+        <button ng-show="loginbtn" ng-click="getLoginForm()" >LOGIN
+        </button>
      </div>
      <div class="col-xs-12 loginform" ng-show="loginform">
           <form action="php/login.php" method="POST">
         
-            <input type="email" name="emaillogin" id="emaillogin" class="input-txt" placeholder="E-MAIL" ng-model="email" required> <br>
-            <input type="password" name="passlogin" id="passlogin" class="input-txt" placeholder="Password xD" ng-model  = "password" required> <br>
+            <input type="email" name="emaillogin" id="emaillogin" class="input-txt" placeholder="E-Mail" ng-model="email" required> <br>
+            <input type="password" name="passlogin" id="passlogin" class="input-txt" placeholder="Password" ng-model  = "password" required> <br>
             <br><button type="submit" id="loginbtn" name="loginSubmit" ng-click="checkLogin()"> Login </button>
             
            <br><a href="#" ng-click="getSignupForm()">SIGN UP</a>
@@ -52,13 +63,17 @@
 
       <div class="col-xs-12 signupform" ng-show="signupform">
           <form action="php/signup.php" method="POST">
-            <input type="text" name="name" id="name" class="signup-input-txt" placeholder="Name"required> <br>
-            <input type="email" name="emailsignup" id="emaillsignup" class="signup-input-txt" placeholder="E-Mail" required> <br>
-            <input type="password" name="passsignup" id="passsignup" class="signup-input-txt" placeholder="Password"required> <br>
-            <input type="password" name="cpasssignup" id="cpasssignup" class="signup-input-txt" placeholder="Confirmed Password"required> <br>
-            <br><button type="submit" id="signupbtn"> Submit </button>
+              
+            <input type="text" name="name" id="name" class="signup-input-txt" placeholder="Name" ng-model="userName" ng-change="checkUser()" required> <br>
+            <input type="email" name="emailsignup" id="emaillsignup" class="signup-input-txt" placeholder="E-Mail"  ng-model="userEmail"  ng-change="checkEmail()" required> <br>
+            <input type="password" name="passsignup" id="passsignup" class="signup-input-txt" placeholder="Password" ng-model="passsignup" ng-change="checkPass()" required> 
+             <br>         
+            <input type="password" name="cpasssignup" id="cpasssignup" class="signup-input-txt" placeholder="Confirmed Password" ng-model="cpasssignup" ng-change="checkPass()" required> <br>
+            <br>
+            {{errMsgPass}}
+            <button type="submit" id="signupbtn" ng-show="submitbtn"> Submit 
+           </button>
            <br><a href="#" ng-click="getLoginForm()">Login</a>
-
            
           </form>
      </div>
@@ -71,15 +86,20 @@
 <script>
   
     //Declare Angular application name 
-    var app = angular.module('picaword',['ngAnimate']);
+    var app = angular.module('picaword',['ngAnimate','ngMaterial']);
     //Declare Angular controller named "wordCtrl"
     app.controller('indexCtrl',  function ($scope, $http, $filter, $sce,$timeout){
         $scope.loginbtn = true;
         $scope.loginform = false;
         $scope.signupform = false;
         $scope.signupbtn = true;
+        $scope.submitbtn = false;
 
-        $scope.errMsg = "";
+        $scope.errMsgUser = "";
+        $scope.errMsgPass = "";
+        $scope.userEmail = "";
+        $scope.userName = "";
+
 
         $scope.getLoginForm = function(){
           $scope.loginbtn = false;
@@ -95,8 +115,43 @@
           $timeout( function(){ $scope.signupform = true }, 300);
         };
 
-          
-      });
+        $scope.checkPass = function(){
+          if($scope.passsignup!=$scope.cpasssignup){
+            console.log("Password doesn't match");
+            $scope.errMsgPass = "Password doesn't match";
+             $scope.submitbtn = false;
+          }else{
+             $scope.errMsgPass = "";
+              $scope.submitbtn = true;
+          }
+        };
 
+       $scope.checkUser = function(){
+          console.log($scope.userName);
+          $http.get('php/check_username.php', { params: { user: $scope.userName } }).then(function (response) {
+            $scope.userID = response.data.records;
+            console.log($scope.userID);
+            if($scope.userID.length>=1){
+              $scope.submitbtn = false;
+            }else{
+              $scope.submitbtn = true;
+            }
+          });
+        };
+
+        $scope.checkEmail = function(){
+          console.log($scope.userEmail);
+          $http.get('php/check_user.php', { params: { user: $scope.userEmail } }).then(function (response) {
+            $scope.userID = response.data.records;
+            console.log($scope.userID);
+            if($scope.userID.length>=1){
+              $scope.submitbtn = false;
+            }else{
+              $scope.submitbtn = true;
+            }
+          });
+        };
+
+  });
 </script>
 </html>
