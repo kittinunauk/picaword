@@ -302,8 +302,14 @@
 		 		//Enqueue if answer was wrong
 		 		queue.push(queue.shift());
 		 		console.log("Current Queue: " + queue);
-		 		$scope.userans = $scope.correctans
+		 		$scope.userans = $scope.correctans;
 		 		$scope.verdictimg ="img/mascot/cardy-no.png";
+
+		 		if(queue.length===1){
+		 			console.log("lll");
+		 			$scope.nextbtn = false;
+		 		}
+
 		 	}
 
 		 	// In case it's  a last card in deck
@@ -323,6 +329,8 @@
 
 		  // getNextCard() function
 		 $scope.getNextCard = function(){
+
+		 	console.log("DD");
 		 	
 		 	if(_mode===1){
 		 		$scope.prevbtn = false;

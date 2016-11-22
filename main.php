@@ -75,6 +75,7 @@
                     <div class="col-sm-12 col-md-12 sidebar">
                        <!--Deck zone-->
   <div ng-controller="deckCtrl" >
+  
     <h2>My Progress Decks</h2>
     
     <div ng-repeat="n in decks" id="deckprev">
@@ -85,7 +86,7 @@
 			<div class="progress-bar" role="progressbar" aria-value="{{n.UProgress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{n.UProgress}}%">				
 			</div>
 		</div>
-		
+  		
     <!-- Modal for display information-->
     <div id="{{n.DID}}" class="modal fade" role="dialog" ng-controller="deckCtrl">
       <div class="modal-dialog">
