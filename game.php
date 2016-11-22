@@ -167,14 +167,14 @@
 			<span class="glyphicon glyphicon-circle-arrow-right"></span></button>
 		<button class="button" id="left" type="button" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn"><span>Prev</span></button>
 		<button class="button" id="right" type="button" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"><span>Next</span></button>
-		{{result}}
+		
 		</div>
 	
 </div>
 
 <div class="col-md-2 col-sm-3" style="height: 100%;"> 
 <img src="{{verdictimg}}" width="200px" height="200px">
-<span class="tooltiptext">{{verdict}}</span>
+<span class="tooltiptext">{{verdict}}{{result}}</span>
  </div>
 </div>
 </div>
@@ -315,9 +315,10 @@
 		 	// In case it's  a last card in deck
 		 	if(queue.length===0){
 		 		console.log("Game Ended");
-		 		$scope.result += "You've finished this deck. (Got 100% progress)";
+		 		$scope.result += "Good Job!";
 				$scope.submitbtnvisible = false;
 				$scope.inputtextvisible = false;
+				$scope.verdict ="";
 				//$scope.pid = queue[0];
 		 	// Otherwise
 		 	}else{
