@@ -143,7 +143,7 @@
 		</div>
 		</div>
 		</div>
-	    <div style="text-align: center; background-color:white;"> <p style="font-size:5%;"><br></p>
+	    <div style="text-align:center; background-color:white;"> <p style="font-size:5%;"><br></p>
 	    	<div style="display: inline-block;">
 				<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" style="z-index: 5;">
 	                    	<flippy-front>
