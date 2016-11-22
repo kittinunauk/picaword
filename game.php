@@ -143,7 +143,7 @@
 		</div>
 		</div>
 		</div>
-	    <div style="text-align: center"> <p style="font-size:5%;"><br></p>
+	    <div style="text-align: center; background-color:white;"> <p style="font-size:5%;"><br></p>
 	    	<div style="display: inline-block;">
 				<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" style="z-index: 5;">
 	                    	<flippy-front>
@@ -347,9 +347,9 @@
 		 	//Learning Mode
 		 	if(_mode===1){
 				// //Last Card
-		 	// 	if($scope.pid===$scope.maxcard||queue.length===0){
-		 	// 		$scope.nextbtn = true;
-		 	// 	} 
+		 	 	if($scope.pid===$scope.maxcard||queue.length===0){
+		 		$scope.nextbtn = true;
+		 	 	} 
 		 		//Update Card information
 	 			$scope.description = $scope.cards[$scope.pid-1].CDescription;
 	 			$scope.currentword = $scope.cards[$scope.pid-1].CWord;
