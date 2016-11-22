@@ -161,8 +161,8 @@
         	</div>
         </div>
 
-		<div style="position: relative; margin: 0px 0px 0px 0px; text-align:center;">
-		<input ng-type="text" ng-model="userans" ng-disabled="inputtext" ng-show="inputtextvisible" ng-enter="getVerdict()"> 
+		<div class="container-input">
+		<input class="input-answer" ng-type="text" ng-model="userans" ng-disabled="inputtext" ng-show="inputtextvisible" ng-enter="getVerdict()"> 
 		<button class="button" id="normal" type="button" ng-click="getVerdict()" ng-show="submitbtnvisible" style="width: 40px;padding-top: 4px;" title="Click here to submit">
 			<span class="glyphicon glyphicon-circle-arrow-right"></span></button>
 		<button class="button" id="left" type="button" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn"><span>Prev</span></button>
@@ -279,6 +279,7 @@
 
 		 // getVerdict() function
 		 $scope.getVerdict = function(){
+		 	$scope.submitbtnvisible = false;
 		 	$scope.inputtext = true;
 		 	$scope.correctans = $scope.cards[$scope.pid-1].CWord;
 		 	console.log("Correct Answer:" + $scope.correctans);
@@ -330,8 +331,6 @@
 
 		  // getNextCard() function
 		 $scope.getNextCard = function(){
-
-		 	console.log("DD");
 		 	
 		 	if(_mode===1){
 		 		$scope.prevbtn = false;
@@ -339,18 +338,18 @@
 		 	 }else{
 			 	$scope.verdict = "Guess what!";
 			 	$scope.pid = queue[0];
-			 	$scope.submitbtnvisible = true;
 			 	$scope.nextbtnvisible = false;
 			 	$scope.inputtext = false;
+			 	$scope.submitbtnvisible = true;
 			 	$scope.userans = "";			 	
 		 	 }
 
 		 	//Learning Mode
 		 	if(_mode===1){
-				//Last Card
-		 		if($scope.pid===$scope.maxcard||queue.length===0){
-		 			$scope.nextbtn = true;
-		 		} 
+				// //Last Card
+		 	// 	if($scope.pid===$scope.maxcard||queue.length===0){
+		 	// 		$scope.nextbtn = true;
+		 	// 	} 
 		 		//Update Card information
 	 			$scope.description = $scope.cards[$scope.pid-1].CDescription;
 	 			$scope.currentword = $scope.cards[$scope.pid-1].CWord;

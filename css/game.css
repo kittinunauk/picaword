@@ -16,3 +16,26 @@ input[type=text] {
     padding: 12px 15px 12px 15px;
     width:250px
 }
+
+.input-answer{
+    padding: 0px;
+    background: none;
+    color: #2B728C;
+    border: none;
+    border-bottom: 2px solid #2B728C; 
+    font-size: 1em;
+    transition: 0.35s ease-in-out;
+}
+
+.input-answer:focus {
+    outline: none;
+}
+
+.container-input {
+    border-radius: 10px;
+    width:100%;
+    text-align: center;
+    position: relative; 
+    margin: 0px 0px 0px 0px;
+    background: white;
+}
