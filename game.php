@@ -143,7 +143,7 @@
 		</div>
 		</div>
 		</div>
-	    <div style="text-align:center; background-color:white;"> <p style="font-size:5%;"><br></p>
+	    <div style="text-align:center; background-color:white;"> 
 	    	<div style="display: inline-block;">
 				<flippy horizontal class="fancy" flip="['click']" flip-back="['click']" duration="500" timing-function="ease-in-out" style="z-index: 5;">
 	                    	<flippy-front>
@@ -167,7 +167,7 @@
 			<span class="glyphicon glyphicon-circle-arrow-right"></span></button>
 		<button style="transition: none;"class="button" id="left" type="button" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn"><span>Prev</span></button>
 		<button style="transition: none;"class="button" id="right" type="button" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"><span>Next</span></button>
-		
+		<p style="font-size:5px;"><br></p>
 		</div>
 	
 </div>
