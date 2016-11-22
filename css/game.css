@@ -1,7 +1,7 @@
 .container{
-	border: 1px white solid;
+	border: 2px white solid;
 	background-color: white;
-	border-radius: 20px;
+	border-radius: 10px 10px 0px 0px;
 	width: 100%;
 }
 
@@ -29,10 +29,11 @@ input[type=text] {
 
 .input-answer:focus {
     outline: none;
+    background: #F2F2F2;
 }
 
 .container-input {
-    border-radius: 10px;
+    border-radius: 0px 0px 10px 10px;
     width:100%;
     text-align: center;
     position: relative; 
