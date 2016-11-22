@@ -163,10 +163,10 @@
 
 		<div class="container-input">
 		<input class="input-answer" ng-type="text" ng-model="userans" ng-disabled="inputtext" ng-show="inputtextvisible" ng-enter="getVerdict()"> 
-		<button class="button" id="normal" type="button" ng-click="getVerdict()" ng-show="submitbtnvisible" style="width: 40px;padding-top: 4px;" title="Click here to submit">
+		<button class="button" id="normal" type="button" ng-click="getVerdict()" ng-show="submitbtnvisible" style="width: 40px;padding-top: 4px;transition:none;" title="Click here to submit">
 			<span class="glyphicon glyphicon-circle-arrow-right"></span></button>
-		<button class="button" id="left" type="button" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn"><span>Prev</span></button>
-		<button class="button" id="right" type="button" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"><span>Next</span></button>
+		<button style="transition: none;"class="button" id="left" type="button" ng-click="getPrevCard()" ng-show="prevbtnvisible" ng-disabled="prevbtn"><span>Prev</span></button>
+		<button style="transition: none;"class="button" id="right" type="button" ng-click="getNextCard()" ng-show="nextbtnvisible" ng-disabled="nextbtn"><span>Next</span></button>
 		
 		</div>
 	
